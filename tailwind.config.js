@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import forms from '@tailwindcss/forms';
-import switcher from 'tailwind-theme-switcher';
+
 export default {
   darkMode: 'class',
   content: [
@@ -35,5 +35,5 @@ export default {
       big: '24px',
     },
   },
-  plugins: [forms, switcher],
+  plugins: [forms],
 };
