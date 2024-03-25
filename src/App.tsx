@@ -5,7 +5,7 @@ function App() {
   const colorBg = theme === 'light' ? 'bg-lightBG' : 'bgdeepestBlack';
   return (
     <main className={`font-spartan font-900 ${colorBg} flex h-dvh grow-0`}>
-      hi
+      <h1>Example text</h1>
     </main>
   );
 }
