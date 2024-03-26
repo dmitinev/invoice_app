@@ -1,12 +1,27 @@
 .header {
-  height: 72px;
+  min-height: 72px;
   background-color: #373b53;
-  display: flex;
+  display: grid;
   align-items: center;
+  grid-template-columns: 72px 1fr 80px;
+  @include tablet_display {
+    height: 80px;
+    grid-template-columns: 80px 1fr 88px;
+  }
+  &__switcher {
+    margin-left: auto;
+    margin-right: 24px;
+    @include tablet_display {
+      margin-right: 32px;
+    }
+  }
   &__logo {
     height: 100%;
     background-color: $darkViolet;
     min-width: 72px;
+    @include tablet_display {
+      min-width: 80px;
+    }
     display: flex;
     justify-content: center;
     align-items: center;
