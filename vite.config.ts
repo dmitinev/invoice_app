@@ -12,6 +12,13 @@ export default defineConfig({
       assets: '/src/assets',
     },
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "./src/_mixins.scss";',
+      },
+    },
+  },
   esbuild: {
     supported: {
       'top-level-await': true,

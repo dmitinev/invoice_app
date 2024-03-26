@@ -1,6 +1,6 @@
 {
   "usesTypeScript": true,
-  "usesCssModule": false,
+  "usesCssModule": true,
   "cssPreprocessor": "scss",
   "testLibrary": "Testing Library",
   "component": {
@@ -13,7 +13,7 @@
       "path": "src/components",
       "withLazy": false,
       "withStory": false,
-      "withStyle": false,
+      "withStyle": true,
       "withTest": false,
       "withIndex": true
     }

@@ -1,14 +1,12 @@
-import { useTheme } from './store/features/Theme/useTheme';
+import { Route, Routes } from 'react-router-dom';
+import { MainPage } from './pages/MainPage';
 
 function App() {
-  const [theme] = useTheme();
-  const colorBg = theme === 'light' ? 'bg-lightBG' : 'bgdeepestBlack';
   return (
-    <main className={`font-spartan font-900 ${colorBg} flex h-dvh grow-0`}>
-      <h1>Example text 2</h1>
-    </main>
+    <Routes>
+      <Route path={import.meta.env.BASE_URL} element={<MainPage />} />
+    </Routes>
   );
 }
 
 export default App;
-
