@@ -8,9 +8,17 @@
   align-items: center;
   justify-content: center;
   border-left: 1px solid #494e6e;
+  @include pc_display {
+    border-left: none;
+    border-top: 1px solid #494e6e;
+  }
   &__image {
     max-width: 32px;
     max-height: 32px;
     border-radius: 50%;
+    @include tablet_display {
+      max-width: 40px;
+      max-height: 40px;
+    }
   }
 }

@@ -1,3 +1,14 @@
 .mainPage {
   height: 100dvh;
+  display: grid;
+  grid-auto-flow: row;
+  @include pc_display {
+    grid-template-columns: 103px 1fr;
+  }
+}
+
+.header {
+  @include pc_display {
+    grid-column: 1 / 2;
+  }
 }

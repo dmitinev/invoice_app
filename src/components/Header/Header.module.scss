@@ -8,11 +8,26 @@
     height: 80px;
     grid-template-columns: 80px 1fr 88px;
   }
+  @include pc_display {
+    grid-template-columns: 1fr;
+    grid-template-rows: 103px 1fr 103px;
+    height: 100%;
+    border-bottom-right-radius: 24px;
+    border-top-right-radius: 24px;
+  }
   &__switcher {
     margin-left: auto;
     margin-right: 24px;
     @include tablet_display {
       margin-right: 32px;
+    }
+    @include pc_display {
+      margin-right: 0;
+      margin-top: auto;
+      margin-bottom: 32px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
   }
   &__logo {
@@ -21,6 +36,9 @@
     min-width: 72px;
     @include tablet_display {
       min-width: 80px;
+    }
+    @include pc_display {
+      min-height: 103px;
     }
     display: flex;
     justify-content: center;

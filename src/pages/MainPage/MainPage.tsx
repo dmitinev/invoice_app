@@ -6,7 +6,9 @@ interface MainPageProps {}
 export const MainPage = ({}: MainPageProps) => {
   return (
     <main className={styles.mainPage}>
-      <Header />
+      <div className={styles.header}>
+        <Header />
+      </div>
     </main>
   );
 };

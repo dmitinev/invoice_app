@@ -1,0 +1,9 @@
+.container {
+  max-width: 327px;
+  @include tablet_display {
+    max-width: 672px;
+  }
+  @include pc_display {
+    max-width: 730px;
+  }
+}

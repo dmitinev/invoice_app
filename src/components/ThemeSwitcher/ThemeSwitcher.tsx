@@ -1,5 +1,5 @@
-import MoonIcon from 'src/assets/icon-moon.svg?react';
-import SunIcon from 'src/assets/icon-sun.svg?react';
+import MoonIcon from 'src/assets/icon-moon.svg';
+import SunIcon from 'src/assets/icon-sun.svg';
 import { useTheme } from 'src/store/features/Theme/useTheme';
 import styles from './ThemeSwitcher.module.scss';
 
@@ -12,7 +12,11 @@ export const ThemeSwitcher = () => {
 
   return (
     <div onClick={toggleTheme} className={styles.themeSwitcher}>
-      {theme === 'dark' ? <MoonIcon /> : <SunIcon />}
+      {theme === 'dark' ? (
+        <img src={MoonIcon} alt="switcher moon icon" />
+      ) : (
+        <img src={SunIcon} alt="switcher sun icon" />
+      )}
     </div>
   );
 };
