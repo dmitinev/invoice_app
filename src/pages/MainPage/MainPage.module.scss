@@ -1,9 +1,11 @@
 .mainPage {
   height: 100dvh;
-  display: grid;
-  grid-auto-flow: row;
   @include pc_display {
+    display: grid;
     grid-template-columns: 103px 1fr;
+  }
+  &__controls {
+    margin-top: 36px;
   }
 }
 

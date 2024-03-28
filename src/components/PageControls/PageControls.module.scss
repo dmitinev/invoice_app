@@ -1,0 +1,22 @@
+.pageControls {
+  display: grid;
+  min-height: 44px;
+  grid-template-columns: 1fr 1fr 90px;
+  align-items: center;
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  &__title {
+    @include headingM;
+  }
+  &__qty {
+    @include bodyVariant;
+    color: $lightGrey;
+  }
+  &__select {
+    justify-self: end;
+    margin-right: 18px;
+  }
+}
