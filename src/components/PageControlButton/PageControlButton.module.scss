@@ -8,6 +8,7 @@
   cursor: pointer;
   border-radius: 24px;
   background-color: $darkViolet;
+  transition: background-color 0.3s;
   &__icon {
     width: 32px;
     height: 32px;
@@ -16,5 +17,11 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+  }
+  &:hover {
+    background-color: $lightViolet;
+  }
+  &:active {
+    background-color: $lightViolet;
   }
 }

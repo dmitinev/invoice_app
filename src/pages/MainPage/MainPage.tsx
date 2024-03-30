@@ -13,9 +13,9 @@ export const MainPage = ({}: MainPageProps) => {
       </div>
       <div className={styles.mainPage__controls}>
         <PageControls />
-      </div>
-      <div className={styles.mainPage__cards}>
-        <InvoicesPalette />
+        <div className={styles.mainPage__cards}>
+          <InvoicesPalette />
+        </div>
       </div>
     </main>
   );
