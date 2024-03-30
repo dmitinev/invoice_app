@@ -1,11 +1,9 @@
+import useWindowDimensions from 'src/hooks/useWindowWidth';
 import iconPlus from '../../assets/icon-plus.svg';
 import styles from './PageControlButton.module.scss';
 
-interface PageControlButtonProps {
-  text: string;
-}
-
-export const PageControlButton = ({ text }: PageControlButtonProps) => {
+export const PageControlButton = () => {
+  const { width } = useWindowDimensions();
   return (
     <button className={styles.pageControlButton}>
       <div className={styles.pageControlButton__icon}>
@@ -15,7 +13,7 @@ export const PageControlButton = ({ text }: PageControlButtonProps) => {
           alt="plus icon"
         />
       </div>
-      {text}
+      {width <= 768 ? 'New' : 'New Invoice'}
     </button>
   );
 };

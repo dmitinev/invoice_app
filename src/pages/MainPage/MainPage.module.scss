@@ -7,10 +7,21 @@
   }
   &__controls {
     margin-top: 36px;
+    @include tablet_display {
+      margin-top: 62px;
+    }
+    @include pc_display {
+      margin-top: 77px;
+    }
   }
   &__cards {
+    margin-top: 32px;
+    @include tablet_display {
+      margin-top: 55px;
+    }
     @include pc_display {
       grid-column: 2 / 3;
+      margin-top: 64px;
     }
   }
 }

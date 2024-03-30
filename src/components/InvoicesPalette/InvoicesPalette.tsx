@@ -9,7 +9,9 @@ export const InvoicesPalette = () => {
     <section className={styles.invoicesPalette}>
       <Container>
         {invoices.map((invoice) => (
-          <InvoiceCard key={invoice.id} {...invoice} />
+          <div className={styles.invoicesPalette__invoice}>
+            <InvoiceCard key={invoice.id} {...invoice} />
+          </div>
         ))}
       </Container>
     </section>

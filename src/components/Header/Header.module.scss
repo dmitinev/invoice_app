@@ -1,6 +1,15 @@
+:global {
+  body[data-theme='dark'] {
+    --backColor: rgba(72, 84, 159, 0.1);
+  }
+  body[data-theme='light'] {
+    --backColor: #373b53;
+  }
+}
+
 .header {
   min-height: 72px;
-  background-color: #373b53;
+  background-color: var(--backColor);
   display: grid;
   align-items: center;
   grid-template-columns: 72px 1fr 80px;

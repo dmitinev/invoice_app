@@ -1,2 +1,27 @@
+:global {
+  body[data-theme='dark'] {
+    --textColor: #fff;
+    --subTextColor: #dfe3fa;
+    --BGColor: rgba(72, 84, 159, 0.1);
+  }
+  body[data-theme='light'] {
+    --textColor: $deepBlack;
+    --subTextColor: $lightGrey;
+    --BGColor: #fff;
+  }
+}
+
 .invoiceCard {
+  min-height: 134px;
+  cursor: pointer;
+  padding: 25px 24px 22px;
+  border-radius: 8px;
+  box-shadow: 0 10px 10px -10px rgba(72, 84, 159, 0.1);
+  background-color: var(--BGColor);
+  color: var(--textColor);
+  @include hover {
+    &:hover {
+      border: 1px solid $lightViolet;
+    }
+  }
 }

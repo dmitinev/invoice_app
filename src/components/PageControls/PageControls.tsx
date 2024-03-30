@@ -12,7 +12,7 @@ export const PageControls = () => {
         <div className={styles.pageControls__select}>
           <PageControlSelect />
         </div>
-        <PageControlButton text="New" />
+        <PageControlButton />
       </section>
     </Container>
   );
