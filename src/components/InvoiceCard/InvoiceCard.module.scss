@@ -1,12 +1,12 @@
 :global {
   body[data-theme='dark'] {
     --textColor: #fff;
-    --subTextColor: #dfe3fa;
+    --subTextCardColor: #dfe3fa;
     --BGColor: rgba(72, 84, 159, 0.1);
   }
   body[data-theme='light'] {
     --textColor: $deepBlack;
-    --subTextColor: $lightGrey;
+    --subTextCardColor: #888eb0;
     --BGColor: #fff;
   }
 }
@@ -18,10 +18,42 @@
   border-radius: 8px;
   box-shadow: 0 10px 10px -10px rgba(72, 84, 159, 0.1);
   background-color: var(--BGColor);
-  color: var(--textColor);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  @include tablet_display {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    min-height: 72px;
+  }
   @include hover {
     &:hover {
-      border: 1px solid $lightViolet;
+      outline: 1px solid $lightViolet;
     }
+  }
+  &__id {
+    @include headingSVariant;
+    line-height: 1.15;
+    letter-spacing: -0.1px;
+    color: var(--textColor);
+  }
+  &__hash {
+    color: $lightGrey;
+  }
+  &__date {
+    @include body;
+    color: var(--subTextCardColor);
+  }
+  &__client {
+    color: var(--subTextCardColor);
+    line-height: 1.15;
+    letter-spacing: -0.1px;
+  }
+  &__total,
+  &__currency {
+    @include headingSVariant;
+    line-height: 1.6;
+    letter-spacing: -0.25px;
+    color: var(--textColor);
   }
 }

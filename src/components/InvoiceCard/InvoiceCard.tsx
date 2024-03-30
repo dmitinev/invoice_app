@@ -16,7 +16,7 @@ export const InvoiceCard = ({
 }: InvoiceCardProps) => {
   return (
     <div className={styles.invoiceCard}>
-      <h2>
+      <h2 className={styles.invoiceCard__id}>
         <span className={styles.invoiceCard__hash}>#</span>
         {id}
       </h2>
