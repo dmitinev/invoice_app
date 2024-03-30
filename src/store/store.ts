@@ -10,6 +10,7 @@ import {
   persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import invoiceReducer from './features/Invoice/InvoiceSlice';
 import { themeReducer } from './features/Theme/ThemeSlice';
 
 const persistConfig = {
@@ -19,6 +20,7 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
   theme: themeReducer,
+  invoice: invoiceReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

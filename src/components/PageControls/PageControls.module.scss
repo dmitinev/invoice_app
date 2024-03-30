@@ -10,10 +10,15 @@
   }
   &__title {
     @include headingM;
+    color: var(--textColor);
+    @include tablet_display {
+      @include headingL;
+      color: var(--textColor);
+    }
   }
   &__qty {
     @include bodyVariant;
-    color: $lightGrey;
+    color: var(--subTextColor);
   }
   &__select {
     justify-self: end;
