@@ -24,7 +24,6 @@
   @include tablet_display {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    min-height: 72px;
   }
   @include hover {
     &:hover {
@@ -36,6 +35,9 @@
     line-height: 1.15;
     letter-spacing: -0.1px;
     color: var(--textColor);
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    margin-bottom: 24px;
   }
   &__hash {
     color: $lightGrey;
@@ -43,11 +45,17 @@
   &__date {
     @include body;
     color: var(--subTextCardColor);
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    height: 50%;
   }
   &__client {
     color: var(--subTextCardColor);
     line-height: 1.15;
     letter-spacing: -0.1px;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    justify-self: end;
   }
   &__total,
   &__currency {
@@ -55,5 +63,51 @@
     line-height: 1.6;
     letter-spacing: -0.25px;
     color: var(--textColor);
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    height: 50%;
+    margin-top: auto;
+  }
+  &__status {
+    @include headingSVariant;
+    grid-row: 2 / 4;
+    grid-column: 2 / 3;
+    width: 104px;
+    height: 40px;
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+    &__indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+      &--paid {
+        background-color: #33d69f;
+      }
+      &--pending {
+        background-color: #ff8f00;
+      }
+      &--draft {
+        background-color: #373b53;
+      }
+    }
+    &--paid {
+      background-color: rgba(51, 215, 160, 0.06);
+      color: #33d69f;
+      border-radius: 6px;
+    }
+    &--pending {
+      background-color: rgba(255, 143, 0, 0.06);
+      color: #ff8f00;
+      border-radius: 6px;
+    }
+    &--draft {
+      color: #373b53;
+      border-radius: 6px;
+      background-color: rgba(55, 59, 83, 0.06);
+    }
   }
 }
