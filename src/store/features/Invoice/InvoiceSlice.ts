@@ -1,8 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { Invoice } from 'src/types';
 import { fetchInvoices } from './invoiceActions';
 
 type loadingState = 'idle' | 'loading' | 'succeeded' | 'failed';
+export type checkBoxName = 'draft' | 'pending' | 'paid';
 type error = string | null;
 
 interface InvoiceState {
@@ -10,6 +11,7 @@ interface InvoiceState {
   invoices: Invoice[];
   filteredInvoices: Invoice[];
   error: error;
+  controlsChecked: { name: checkBoxName; checked: boolean }[];
 }
 
 const initialState: InvoiceState = {
@@ -17,12 +19,35 @@ const initialState: InvoiceState = {
   invoices: [],
   filteredInvoices: [],
   error: null,
+  controlsChecked: [
+    { name: 'draft', checked: false },
+    { name: 'pending', checked: false },
+    { name: 'paid', checked: false },
+  ],
 };
 
 const invoiceSlice = createSlice({
-  name: 'invoice',
+  name: '@@invoice',
   initialState,
-  reducers: {},
+  reducers: {
+    filterInvoices: (state, action: PayloadAction<string>) => {
+      if (action.payload === '') {
+        state.filteredInvoices = state.invoices;
+      } else {
+        state.filteredInvoices = state.invoices.filter((invoice) => {
+          return invoice.status.toLowerCase() === action.payload.toLowerCase();
+        });
+      }
+    },
+    toggleCheckbox: (state, action: PayloadAction<checkBoxName>) => {
+      state.controlsChecked = state.controlsChecked.map((checkbox) => {
+        if (checkbox.name === action.payload) {
+          return { name: checkbox.name, checked: !checkbox.checked };
+        }
+        return checkbox;
+      });
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchInvoices.pending, (state) => {
@@ -31,6 +56,7 @@ const invoiceSlice = createSlice({
       .addCase(fetchInvoices.fulfilled, (state, action) => {
         state.loadingStatus = 'succeeded';
         state.invoices = action.payload;
+        state.filteredInvoices = action.payload;
       })
       .addCase(fetchInvoices.rejected, (state, action) => {
         state.loadingStatus = 'failed';
@@ -40,3 +66,4 @@ const invoiceSlice = createSlice({
 });
 
 export default invoiceSlice.reducer;
+export const { filterInvoices, toggleCheckbox } = invoiceSlice.actions;
