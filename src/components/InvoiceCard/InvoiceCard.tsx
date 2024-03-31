@@ -1,3 +1,4 @@
+import arrowRightUrl from 'src/assets/icon-arrow-right.svg';
 import { Invoice } from 'src/types';
 import styles from './InvoiceCard.module.scss';
 
@@ -48,6 +49,11 @@ export const InvoiceCard = ({
         ></span>
         {status}
       </p>
+      <img
+        src={arrowRightUrl}
+        className={styles.invoiceCard__arrowRight}
+        alt="arrow right svg"
+      />
     </div>
   );
 };
