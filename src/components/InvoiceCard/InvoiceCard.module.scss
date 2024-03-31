@@ -24,6 +24,8 @@
   @include tablet_display {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
+    min-height: 72px;
+    padding: 16px 24px;
   }
   @include hover {
     &:hover {
@@ -38,6 +40,11 @@
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     margin-bottom: 24px;
+    @include tablet_display {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      margin-bottom: 0;
+    }
   }
   &__hash {
     color: $lightGrey;
@@ -48,6 +55,11 @@
     grid-row: 2 / 3;
     grid-column: 1 / 2;
     height: 50%;
+    @include tablet_display {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      height: auto;
+    }
   }
   &__client {
     color: var(--subTextCardColor);
@@ -56,6 +68,11 @@
     grid-row: 1 / 2;
     grid-column: 2 / 3;
     justify-self: end;
+    @include tablet_display {
+      grid-column: 3 / 4;
+      grid-row: 1 / 2;
+      justify-self: unset;
+    }
   }
   &__total,
   &__currency {
@@ -67,6 +84,12 @@
     grid-column: 1 / 2;
     height: 50%;
     margin-top: auto;
+    @include tablet_display {
+      grid-column: 4 / 5;
+      grid-row: 1 / 2;
+      margin-top: 0;
+      height: auto;
+    }
   }
   &__status {
     @include headingSVariant;
@@ -79,6 +102,11 @@
     align-items: center;
     justify-content: center;
     text-transform: capitalize;
+    @include tablet_display {
+      grid-column: 5 / 6;
+      grid-row: 1 / 2;
+      justify-self: unset;
+    }
     &__indicator {
       width: 8px;
       height: 8px;
