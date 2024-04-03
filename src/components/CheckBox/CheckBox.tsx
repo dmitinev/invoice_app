@@ -1,10 +1,6 @@
 import { ChangeEvent, ReactNode, Ref, forwardRef } from 'react';
-import {
-  checkBoxName,
-  filterInvoices,
-} from 'src/store/features/Invoice/InvoiceSlice';
+import { checkBoxName } from 'src/store/features/Invoice/InvoiceSlice';
 import { useCheckBox } from 'src/store/features/Invoice/useCheckBox';
-import { useAppDispatch } from 'src/store/redux-hooks';
 import styles from './CheckBox.module.scss';
 
 interface CheckBoxProps {
@@ -16,15 +12,12 @@ interface CheckBoxProps {
 export const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(
   ({ name, children }, ref) => {
     const [controlsChecked, setChecked] = useCheckBox(name);
-    const dispatch = useAppDispatch();
 
     const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.checked) {
         setChecked(name);
-        dispatch(filterInvoices(e.target.name));
       } else {
         setChecked(name);
-        dispatch(filterInvoices(''));
       }
     };
 

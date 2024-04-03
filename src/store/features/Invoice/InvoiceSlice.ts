@@ -30,21 +30,17 @@ const invoiceSlice = createSlice({
   name: '@@invoice',
   initialState,
   reducers: {
-    filterInvoices: (state, action: PayloadAction<string>) => {
-      if (action.payload === '') {
-        state.filteredInvoices = state.invoices;
-      } else {
-        state.filteredInvoices = state.invoices.filter((invoice) => {
-          return invoice.status.toLowerCase() === action.payload.toLowerCase();
-        });
-      }
-    },
     toggleCheckbox: (state, action: PayloadAction<checkBoxName>) => {
       state.controlsChecked = state.controlsChecked.map((checkbox) => {
         if (checkbox.name === action.payload) {
           return { name: checkbox.name, checked: !checkbox.checked };
         }
         return checkbox;
+      });
+      state.filteredInvoices = state.invoices.filter((invoice) => {
+        return state.controlsChecked.find((checkbox) => {
+          return invoice.status === checkbox.name && checkbox.checked;
+        });
       });
     },
   },
@@ -66,4 +62,4 @@ const invoiceSlice = createSlice({
 });
 
 export default invoiceSlice.reducer;
-export const { filterInvoices, toggleCheckbox } = invoiceSlice.actions;
+export const { toggleCheckbox } = invoiceSlice.actions;
