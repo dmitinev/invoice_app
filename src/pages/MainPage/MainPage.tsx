@@ -3,9 +3,7 @@ import { InvoicesPalette } from 'src/components/InvoicesPalette';
 import { PageControls } from 'src/components/PageControls';
 import styles from './MainPage.module.scss';
 
-interface MainPageProps {}
-
-export const MainPage = ({}: MainPageProps) => {
+export const MainPage = () => {
   return (
     <main className={styles.mainPage}>
       <div className={styles.header}>

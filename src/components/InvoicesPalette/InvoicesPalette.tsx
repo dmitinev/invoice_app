@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useInvoices } from 'src/store/features/Invoice/useInvoices';
 import { Container } from '../Container';
 import { InvoiceCard } from '../InvoiceCard';
@@ -10,7 +11,9 @@ export const InvoicesPalette = () => {
       <Container>
         {invoices.map((invoice) => (
           <div key={invoice.id} className={styles.invoicesPalette__invoice}>
-            <InvoiceCard {...invoice} />
+            <Link to={`${import.meta.env.BASE_URL}${invoice.id}`}>
+              <InvoiceCard {...invoice} />
+            </Link>
           </div>
         ))}
       </Container>
