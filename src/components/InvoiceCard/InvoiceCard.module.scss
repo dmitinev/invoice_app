@@ -103,6 +103,7 @@
   }
   &__status {
     @include headingSVariant;
+    line-height: normal;
     grid-row: 2 / 4;
     grid-column: 2 / 3;
     width: 104px;
