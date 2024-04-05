@@ -1,9 +1,13 @@
 :global {
   body[data-theme='dark'] {
     --linkBackColor: #ffffff;
+    --InvDetBGColor: rgba(72, 84, 159, 0.1);
+    --secondaryGrayDetailsColor: #dfe3fa;
   }
   body[data-theme='light'] {
     --linkBackColor: #0c0e16;
+    --InvDetBGColor: #ffffff;
+    --secondaryGrayDetailsColor: #7e88c3;
   }
 }
 
@@ -13,15 +17,6 @@
     display: grid;
     grid-template-columns: 103px 1fr;
     grid-template-rows: 1fr;
-  }
-  &__controls {
-    margin-top: 36px;
-    @include tablet_display {
-      margin-top: 62px;
-    }
-    @include pc_display {
-      margin-top: 77px;
-    }
   }
   &__backLinks {
     margin-top: 33px;
@@ -43,6 +38,25 @@
   &__headingBar {
     margin-top: 31px;
   }
+  &__infoBlock {
+    margin-top: 16px;
+    background-color: var(--InvDetBGColor);
+    border-radius: 8px;
+    box-shadow: 0 10px 10px -10px rgba(72, 84, 159, 0.1);
+    padding: 25px 24px;
+    &__heading {
+      &__id {
+        @include headingSVariant;
+        line-height: normal;
+        margin-bottom: 4px;
+      }
+      &__desc {
+        @include bodyVariant;
+        line-height: normal;
+        color: var(--secondaryGrayDetailsColor);
+      }
+    }
+  }
 }
 
 .header {
@@ -50,4 +64,8 @@
     grid-column: 1 / 2;
     grid-row: 1;
   }
+}
+
+.hash {
+  color: var(--secondaryGrayDetailsColor);
 }

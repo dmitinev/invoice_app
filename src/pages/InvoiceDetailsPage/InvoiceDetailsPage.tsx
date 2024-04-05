@@ -24,8 +24,8 @@ export const InvoiceDetailsPage = () => {
       <div className={styles.header}>
         <Header />
       </div>
-      <Container>
-        <div className={styles.invoiceDetailsPage__backLinks}>
+      <section className={styles.invoiceDetailsPage__backLinks}>
+        <Container>
           <span
             className={styles.invoiceDetailsPage__backLink}
             onClick={() => navigate(-1)}
@@ -37,12 +37,27 @@ export const InvoiceDetailsPage = () => {
             />
             Go back
           </span>
-        </div>
-      </Container>
-      <Container>
-        <div className={styles.invoiceDetailsPage__headingBar}>
+        </Container>
+      </section>
+      <section className={styles.invoiceDetailsPage__headingBar}>
+        <Container>
           <DetailsStatusBar status={invoice.status} />
-        </div>
+        </Container>
+      </section>
+      <Container>
+        <section className={styles.invoiceDetailsPage__infoBlock}>
+          <div className={styles.invoiceDetailsPage__infoBlock__heading}>
+            <h2 className={styles.invoiceDetailsPage__infoBlock__heading__id}>
+              <span className={styles.hash}>#</span>
+              {invoice.id}
+            </h2>
+            <span
+              className={styles.invoiceDetailsPage__infoBlock__heading__desc}
+            >
+              {invoice.description}
+            </span>
+          </div>
+        </section>
       </Container>
     </section>
   );
