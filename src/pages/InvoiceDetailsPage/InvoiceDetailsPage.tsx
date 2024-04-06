@@ -3,6 +3,7 @@ import arrowLeftIconUrl from 'src/assets/icon-arrow-left.svg';
 import { Container } from 'src/components/Container';
 import { DetailsStatusBar } from 'src/components/DetailsStatusBar';
 import { Header } from 'src/components/Header';
+import { InvoiceItemLine } from 'src/components/InvoiceItemLine';
 import { selectInvoiceById } from 'src/store/features/Invoice/invoiceSelectors';
 import { useAppSelector } from 'src/store/redux-hooks';
 import { Page404 } from '../Page404';
@@ -24,41 +25,197 @@ export const InvoiceDetailsPage = () => {
       <div className={styles.header}>
         <Header />
       </div>
-      <section className={styles.invoiceDetailsPage__backLinks}>
-        <Container>
-          <span
-            className={styles.invoiceDetailsPage__backLink}
-            onClick={() => navigate(-1)}
-          >
-            <img
-              className={styles.invoiceDetailsPage__backLink__image}
-              src={arrowLeftIconUrl}
-              alt="arrow left"
-            />
-            Go back
-          </span>
-        </Container>
-      </section>
-      <section className={styles.invoiceDetailsPage__headingBar}>
-        <Container>
-          <DetailsStatusBar status={invoice.status} />
-        </Container>
-      </section>
-      <Container>
-        <section className={styles.invoiceDetailsPage__infoBlock}>
-          <div className={styles.invoiceDetailsPage__infoBlock__heading}>
-            <h2 className={styles.invoiceDetailsPage__infoBlock__heading__id}>
-              <span className={styles.hash}>#</span>
-              {invoice.id}
-            </h2>
+      <div className={styles.invoiceDetailsPage__wrapper}>
+        <section className={styles.invoiceDetailsPage__backLinks}>
+          <Container>
             <span
-              className={styles.invoiceDetailsPage__infoBlock__heading__desc}
+              className={styles.invoiceDetailsPage__backLink}
+              onClick={() => navigate(-1)}
             >
-              {invoice.description}
+              <img
+                className={styles.invoiceDetailsPage__backLink__image}
+                src={arrowLeftIconUrl}
+                alt="arrow left"
+              />
+              Go back
             </span>
-          </div>
+          </Container>
         </section>
-      </Container>
+        <section className={styles.invoiceDetailsPage__headingBar}>
+          <Container>
+            <DetailsStatusBar status={invoice.status} />
+          </Container>
+        </section>
+        <Container>
+          <section className={styles.invoiceDetailsPage__infoBlock}>
+            <div className={styles.invoiceDetailsPage__infoBlock__heading}>
+              <h2 className={styles.invoiceDetailsPage__infoBlock__heading__id}>
+                <span className={styles.hash}>#</span>
+                {invoice.id}
+              </h2>
+              <span
+                className={styles.invoiceDetailsPage__infoBlock__heading__desc}
+              >
+                {invoice.description}
+              </span>
+            </div>
+            <div className={styles.invoiceDetailsPage__infoBlock__address}>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__address__street
+                }
+              >
+                {invoice.senderAddress.street}
+              </span>
+              <span
+                className={styles.invoiceDetailsPage__infoBlock__address__city}
+              >
+                {invoice.senderAddress.city}
+              </span>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__address__postCode
+                }
+              >
+                {invoice.senderAddress.postCode}
+              </span>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__address__country
+                }
+              >
+                {invoice.senderAddress.country}
+              </span>
+            </div>
+            <div className={styles.invoiceDetailsPage__infoBlock__dates}>
+              <div
+                className={styles.invoiceDetailsPage__infoBlock__dates__payment}
+              >
+                <span
+                  className={styles.invoiceDetailsPage__infoBlock__dates__label}
+                >
+                  Invoice Date
+                </span>
+                <span
+                  className={styles.invoiceDetailsPage__infoBlock__dates__value}
+                >
+                  {invoice.createdAt}
+                </span>
+              </div>
+              <div
+                className={styles.invoiceDetailsPage__infoBlock__dates__payment}
+              >
+                <span
+                  className={styles.invoiceDetailsPage__infoBlock__dates__label}
+                >
+                  Payment Due
+                </span>
+                <span
+                  className={styles.invoiceDetailsPage__infoBlock__dates__value}
+                >
+                  {invoice.paymentDue}
+                </span>
+              </div>
+            </div>
+            <div className={styles.invoiceDetailsPage__infoBlock__receiver}>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__receiver__label
+                }
+              >
+                Bill To
+              </span>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__receiver__value
+                }
+              >
+                {invoice.clientName}
+              </span>
+              <div
+                className={styles.invoiceDetailsPage__infoBlock__receiver__data}
+              >
+                <span
+                  className={
+                    styles.invoiceDetailsPage__infoBlock__receiver__data__street
+                  }
+                >
+                  {invoice.clientAddress.street}
+                </span>
+                <span
+                  className={
+                    styles.invoiceDetailsPage__infoBlock__receiver__data__city
+                  }
+                >
+                  {invoice.clientAddress.city}
+                </span>
+                <span
+                  className={
+                    styles.invoiceDetailsPage__infoBlock__receiver__data__postCode
+                  }
+                >
+                  {invoice.clientAddress.postCode}
+                </span>
+                <span
+                  className={
+                    styles.invoiceDetailsPage__infoBlock__receiver__data__country
+                  }
+                >
+                  {invoice.clientAddress.country}
+                </span>
+              </div>
+            </div>
+            <div className={styles.invoiceDetailsPage__infoBlock__sentToEmail}>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__sentToEmail__label
+                }
+              >
+                Sent to
+              </span>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__sentToEmail__value
+                }
+              >
+                {invoice.clientEmail}
+              </span>
+            </div>
+            <div className={styles.invoiceDetailsPage__infoBlock__invoiceItems}>
+              {invoice.items.map((item) => (
+                <div
+                  key={item.name}
+                  className={
+                    styles.invoiceDetailsPage__infoBlock__invoiceItems__line
+                  }
+                >
+                  <InvoiceItemLine {...item} />
+                </div>
+              ))}
+            </div>
+            <div
+              className={
+                styles.invoiceDetailsPage__infoBlock__invoiceItems__grandTotal
+              }
+            >
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__invoiceItems__grandTotal__label
+                }
+              >
+                Grand Total
+              </span>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__invoiceItems__grandTotal__value
+                }
+              >
+                £ {invoice.total.toFixed(2)}
+              </span>
+            </div>
+          </section>
+        </Container>
+      </div>
     </section>
   );
 };

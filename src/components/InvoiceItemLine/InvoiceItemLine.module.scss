@@ -1,0 +1,34 @@
+.invoiceItemLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__item {
+    &__name {
+      @include headingS;
+      line-height: 1;
+      letter-spacing: -0.25px;
+      margin-bottom: 8px;
+      color: var(--linkBackColor);
+    }
+    &__qty {
+      line-height: 1;
+      letter-spacing: -0.25px;
+      color: var(--secondaryGrayDetailsColor);
+    }
+    &__mark {
+      color: var(--secondaryGrayDetailsColor);
+    }
+    &__price {
+      @include headingS;
+      line-height: 1;
+      letter-spacing: -0.25px;
+      color: var(--secondaryGrayDetailsColor);
+    }
+  }
+  &__total {
+    @include headingS;
+    line-height: normal;
+    letter-spacing: -0.25px;
+    color: var(--linkBackColor);
+  }
+}
