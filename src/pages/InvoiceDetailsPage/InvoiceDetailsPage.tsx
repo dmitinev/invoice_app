@@ -3,7 +3,10 @@ import arrowLeftIconUrl from 'src/assets/icon-arrow-left.svg';
 import { Container } from 'src/components/Container';
 import { DetailsStatusBar } from 'src/components/DetailsStatusBar';
 import { Header } from 'src/components/Header';
+import { InvoiceDeleteBtn } from 'src/components/InvoiceDeleteBtn';
+import { InvoiceEditBtn } from 'src/components/InvoiceEditBtn';
 import { InvoiceItemLine } from 'src/components/InvoiceItemLine';
+import { InvoiceMakePaidBtn } from 'src/components/InvoiceMakePaidBtn';
 import { selectInvoiceById } from 'src/store/features/Invoice/invoiceSelectors';
 import { useAppSelector } from 'src/store/redux-hooks';
 import { Page404 } from '../Page404';
@@ -215,6 +218,24 @@ export const InvoiceDetailsPage = () => {
             </div>
           </section>
         </Container>
+        <footer className={styles.invoiceDetailsPage__footer}>
+          <Container>
+            <div className={styles.invoiceDetailsPage__footer__buttons}>
+              <div className={styles.invoiceDetailsPage__footer__button}>
+                <InvoiceEditBtn text="Edit" />
+              </div>
+              <div className={styles.invoiceDetailsPage__footer__button}>
+                <InvoiceDeleteBtn text="Delete" />
+              </div>
+              <div className={styles.invoiceDetailsPage__footer__button}>
+                <InvoiceMakePaidBtn
+                  text="Mark as Paid"
+                  disabled={invoice.status.toLowerCase() === 'paid'}
+                />
+              </div>
+            </div>
+          </Container>
+        </footer>
       </div>
     </section>
   );

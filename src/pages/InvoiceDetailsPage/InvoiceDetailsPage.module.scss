@@ -183,6 +183,24 @@
       }
     }
   }
+  &__footer {
+    margin-top: 56px;
+    min-height: 91px;
+    background-color: var(--InvDetBGColor);
+    display: flex;
+    align-items: center;
+    &__buttons {
+      display: flex;
+    }
+    &__button {
+      &:not(:last-child) {
+        margin-right: 8px;
+      }
+    }
+    @include tablet_display {
+      display: none;
+    }
+  }
 }
 
 .header {
