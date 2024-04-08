@@ -23,3 +23,12 @@
     background-color: #9277ff;
   }
 }
+
+.disabled {
+  background-color: #f8f8fb;
+  color: $deepBlack;
+  &:hover {
+    background-color: #f8f8fb;
+    cursor: not-allowed;
+  }
+}

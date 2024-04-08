@@ -13,7 +13,7 @@ export const InvoiceMakePaidBtn = ({
 }: InvoiceMakePaidBtnProps) => {
   return (
     <button
-      className={styles.invoiceMakePaidBtn}
+      className={`${styles.invoiceMakePaidBtn} ${disabled ? styles.disabled : ''}`}
       onClick={clickHandler}
       disabled={disabled}
     >
