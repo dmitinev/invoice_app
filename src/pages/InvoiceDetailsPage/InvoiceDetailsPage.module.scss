@@ -50,6 +50,10 @@
     padding: 25px 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    @include tablet_display {
+      grid-template-columns: repeat(4, 1fr);
+      padding: 33px 32px;
+    }
     grid-template-rows: auto;
     &__heading {
       grid-column: 1/2;
@@ -71,6 +75,13 @@
       line-height: 1.38;
       grid-row: 2/3;
       grid-column: 1/2;
+      @include tablet_display {
+        grid-column: 4/5;
+        grid-row: 1/2;
+        margin-top: 0;
+        margin-bottom: 21px;
+        justify-self: end;
+      }
       color: var(--secondaryGrayDetailsColor);
       margin-top: 30px;
       display: flex;
@@ -80,6 +91,11 @@
       margin-top: 31px;
       grid-row: 3/5;
       grid-column: 1/2;
+      @include tablet_display {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        margin-top: 0;
+      }
       &__payment {
         margin-bottom: 31px;
         display: flex;
@@ -105,6 +121,12 @@
       margin-top: 31px;
       grid-column: 2/3;
       grid-row: 3/5;
+      @include tablet_display {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        margin-top: 0;
+        justify-self: center;
+      }
       &__label {
         @include bodyVariant;
         line-height: normal;
@@ -132,6 +154,11 @@
       grid-row: 5/6;
       display: flex;
       flex-direction: column;
+      @include tablet_display {
+        grid-column: 3/4;
+        grid-row: 2/3;
+        justify-self: end;
+      }
       &__label {
         @include bodyVariant;
         line-height: normal;
@@ -157,8 +184,18 @@
           margin-bottom: 24px;
         }
       }
+      @include tablet_display {
+        grid-column: 1 / end;
+        grid-row: 3/4;
+        padding: 33px 32px 30px;
+        margin-top: 24px;
+      }
       &__grandTotal {
         grid-column: 1 / end;
+        @include tablet_display {
+          grid-column: 1 / end;
+          grid-row: 4/5;
+        }
         padding: 0 24px;
         display: flex;
         justify-content: space-between;
