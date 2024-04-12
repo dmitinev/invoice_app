@@ -15,16 +15,19 @@ export const InvoiceItemLine = ({
 }: InvoiceItemLineProps) => {
   return (
     <div className={styles.invoiceItemLine}>
-      <div className={styles.invoiceItemLine__item}>
-        <h3 className={styles.invoiceItemLine__item__name}>{name}</h3>
-        <div className={styles.invoiceItemLine__item__params}>
-          <span className={styles.invoiceItemLine__item__qty}>{quantity}</span>
-          <span className={styles.invoiceItemLine__item__mark}> x </span>
-          <span className={styles.invoiceItemLine__item__price}>
-            £ {price.toFixed(2)}
-          </span>
-        </div>
+      <h3 className={styles.invoiceItemLine__name}>{name}</h3>
+      <div className={styles.invoiceItemLine__paramsMobile}>
+        <span className={styles.invoiceItemLine__qtyM}>{quantity}</span>
+        <span className={styles.invoiceItemLine__markM}> x </span>
+        <span className={styles.invoiceItemLine__priceM}>
+          £ {price.toFixed(2)}
+        </span>
       </div>
+      <span className={styles.invoiceItemLine__qty}>{quantity}</span>
+      <span className={styles.invoiceItemLine__mark}> x </span>
+      <span className={styles.invoiceItemLine__price}>
+        £ {price.toFixed(2)}
+      </span>
       <div className={styles.invoiceItemLine__total}>£ {total.toFixed(2)}</div>
     </div>
   );

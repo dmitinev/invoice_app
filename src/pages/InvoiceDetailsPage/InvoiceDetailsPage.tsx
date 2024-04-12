@@ -185,6 +185,34 @@ export const InvoiceDetailsPage = () => {
               </span>
             </div>
             <div className={styles.invoiceDetailsPage__infoBlock__invoiceItems}>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__invoiceItems__label
+                }
+              >
+                Item Name
+              </span>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__invoiceItems__label
+                }
+              >
+                QTY.
+              </span>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__invoiceItems__label
+                }
+              >
+                Price
+              </span>
+              <span
+                className={
+                  styles.invoiceDetailsPage__infoBlock__invoiceItems__label
+                }
+              >
+                Total
+              </span>
               {invoice.items.map((item) => (
                 <div
                   key={item.name}

@@ -179,9 +179,32 @@
       border-top-right-radius: 8px;
       padding: 25px 24px 23px;
       margin-top: 38px;
+      @include tablet_display {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      &__label {
+        @include bodyVariant;
+        color: var(--secondaryGrayDetailsColor);
+        display: none;
+        &:first-child {
+          @include tablet_display {
+            justify-self: start;
+          }
+        }
+        @include tablet_display {
+          display: block;
+          justify-self: end;
+          margin-bottom: 32px;
+        }
+      }
       &__line {
         &:not(:last-child) {
           margin-bottom: 24px;
+        }
+        @include tablet_display {
+          grid-column: 1 / end;
         }
       }
       @include tablet_display {
