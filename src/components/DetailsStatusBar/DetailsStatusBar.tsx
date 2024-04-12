@@ -1,5 +1,7 @@
+import { InvoiceDeleteBtn } from '../InvoiceDeleteBtn';
+import { InvoiceEditBtn } from '../InvoiceEditBtn';
+import { InvoiceMakePaidBtn } from '../InvoiceMakePaidBtn';
 import styles from './DetailsStatusBar.module.scss';
-
 interface DetailsStatusBarProps {
   status: string;
 }
@@ -29,6 +31,20 @@ export const DetailsStatusBar = ({ status }: DetailsStatusBarProps) => {
         ></span>
         {status}
       </p>
+      <div className={styles.detailsStatusBar__buttons}>
+        <div className={styles.detailsStatusBar__button}>
+          <InvoiceEditBtn text="Edit" />
+        </div>
+        <div className={styles.detailsStatusBar__button}>
+          <InvoiceDeleteBtn text="Delete" />
+        </div>
+        <div className={styles.detailsStatusBar__button}>
+          <InvoiceMakePaidBtn
+            text="Mark as Paid"
+            disabled={status.toLowerCase() === 'paid'}
+          />
+        </div>
+      </div>
     </div>
   );
 };

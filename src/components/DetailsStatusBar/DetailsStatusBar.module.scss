@@ -79,4 +79,18 @@
       }
     }
   }
+  &__buttons {
+    display: none;
+    @include tablet_display {
+      display: flex;
+      justify-content: flex-end;
+      grid-column: 3/4;
+      grid-row: 1/2;
+    }
+  }
+  &__button {
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+  }
 }
