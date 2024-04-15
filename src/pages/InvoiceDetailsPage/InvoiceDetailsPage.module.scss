@@ -267,6 +267,8 @@
   @include pc_display {
     grid-column: 1 / 2;
     grid-row: 1;
+    position: relative;
+    z-index: 8;
   }
 }
 

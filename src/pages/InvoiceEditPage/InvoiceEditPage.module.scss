@@ -1,4 +1,15 @@
 .invoiceEditPageWrapper {
+  display: none;
+  @include tablet_display {
+    display: block;
+    background-color: #000;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 80px;
+    z-index: 4;
+  }
 
 }
 .invoiceEditPage {
@@ -8,4 +19,11 @@
   position: absolute;
   top: 73px;
   z-index: 5;
+  @include tablet_display {
+    top: 80px;
+    height: 100%;
+    max-width: 616px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
 }

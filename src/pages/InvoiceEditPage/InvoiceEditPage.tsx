@@ -12,17 +12,26 @@ export const InvoiceEditPage = ({ invoice, isShown }: InvoiceEditPageProps) => {
   return (
     <AnimatePresence>
       {isShown && (
-        <motion.div
-          className={styles.invoiceEditPage}
-          initial={{ left: '-100%' }}
-          animate={{ left: '0' }}
-          exit={{ left: '-100%' }}
-          transition={{ duration: 0.4 }}
-        >
-          <h1 className={styles.invoiceEditPage__heading}>
-            Edit #{invoice.id}
-          </h1>
-        </motion.div>
+        <>
+          <motion.div
+            className={styles.invoiceEditPageWrapper}
+            initial={{ left: '-100%' }}
+            animate={{ left: '0' }}
+            exit={{ left: '-100%' }}
+            transition={{ duration: 0.4 }}
+          ></motion.div>
+          <motion.div
+            className={styles.invoiceEditPage}
+            initial={{ left: '-100%' }}
+            animate={{ left: '0' }}
+            exit={{ left: '-100%' }}
+            transition={{ duration: 0.4 }}
+          >
+            <h1 className={styles.invoiceEditPage__heading}>
+              Edit #{invoice.id}
+            </h1>
+          </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
