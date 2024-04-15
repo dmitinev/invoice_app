@@ -47,7 +47,7 @@ export const InvoiceDetailsPage = () => {
             <Container>
               <span
                 className={styles.invoiceDetailsPage__backLink}
-                onClick={() => navigate(-1)}
+                onClick={() => navigate(`${import.meta.env.BASE_URL}`)}
               >
                 <img
                   className={styles.invoiceDetailsPage__backLink__image}
@@ -60,7 +60,10 @@ export const InvoiceDetailsPage = () => {
           </section>
           <section className={styles.invoiceDetailsPage__headingBar}>
             <Container>
-              <DetailsStatusBar status={invoice.status} />
+              <DetailsStatusBar
+                status={invoice.status}
+                editPageHandler={editPageHandler}
+              />
             </Container>
           </section>
           <Container>

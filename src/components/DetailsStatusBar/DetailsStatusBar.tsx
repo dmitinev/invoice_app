@@ -4,9 +4,13 @@ import { InvoiceMakePaidBtn } from '../InvoiceMakePaidBtn';
 import styles from './DetailsStatusBar.module.scss';
 interface DetailsStatusBarProps {
   status: string;
+  editPageHandler: () => void;
 }
 
-export const DetailsStatusBar = ({ status }: DetailsStatusBarProps) => {
+export const DetailsStatusBar = ({
+  status,
+  editPageHandler,
+}: DetailsStatusBarProps) => {
   const getStatusClass = (status: string, mainElementClassName: string) => {
     if (status === 'paid') {
       return styles[`${mainElementClassName}--paid`];
@@ -33,7 +37,7 @@ export const DetailsStatusBar = ({ status }: DetailsStatusBarProps) => {
       </p>
       <div className={styles.detailsStatusBar__buttons}>
         <div className={styles.detailsStatusBar__button}>
-          <InvoiceEditBtn text="Edit" />
+          <InvoiceEditBtn text="Edit" clickHandler={editPageHandler} />
         </div>
         <div className={styles.detailsStatusBar__button}>
           <InvoiceDeleteBtn text="Delete" />
