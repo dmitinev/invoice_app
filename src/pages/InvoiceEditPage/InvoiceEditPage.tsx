@@ -1,3 +1,4 @@
+import { InvoiceForm } from 'components/InvoiceForm';
 import { AnimatePresence, motion } from 'framer-motion';
 import arrowLeftIconUrl from 'src/assets/icon-arrow-left.svg';
 import { Invoice } from 'src/types';
@@ -50,6 +51,9 @@ export const InvoiceEditPage = ({
                 Edit <span className={styles.hash}>#</span>
                 {invoice.id}
               </h1>
+              <div className={styles.invoiceEditPage__form}>
+                <InvoiceForm invoice={invoice} />
+              </div>
             </div>
           </motion.div>
         </>

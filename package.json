@@ -13,6 +13,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",
     "axios": "^1.6.8",
+    "formik": "^2.4.5",
     "framer-motion": "^11.0.28",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,7 +21,8 @@
     "react-router-dom": "^6.22.3",
     "redux-persist": "^6.0.0",
     "sass": "^1.72.0",
-    "the-new-css-reset": "^1.11.2"
+    "the-new-css-reset": "^1.11.2",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
