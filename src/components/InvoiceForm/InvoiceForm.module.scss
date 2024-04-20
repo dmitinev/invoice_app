@@ -12,6 +12,9 @@
     grid-column-gap: 23px;
     grid-row-gap: 25px;
   }
+  &__invoiceDateBlock {
+    margin-top: 41px;
+  }
   &__sectionHeading {
     grid-column: 1 / 3;
     @include headingSVariant;
@@ -39,24 +42,16 @@
   &__labelclientMail {
     grid-column: 1/3;
   }
-  &__fieldCaption {
-    @include body;
-    line-height: 1.15;
-    letter-spacing: -0.1px;
-    color: var(--secondaryGrayDetailsColor);
-    margin-bottom: 9px;
+  &__labelclientStreet {
+    grid-column: 1/3;
   }
-  &__inputField {
-    @include headingSVariant;
-    border: solid 1px var(--invoiceFormFieldBorderColor);
-    border-radius: 4px;
-    padding: 18px 0 18px 20px;
-    color: var(--linkBackColor);
-    background-color: var(--invoiceFormFieldBGColor);
-    &:active,
-    &:focus
-    {
-      border: 1px solid #9277ff;
-    }
+  &__labelclientCity {
+    grid-column: 1/2;
+  }
+  &__labelClientPostCode {
+    grid-column: 2/3;
+  }
+  &__labelClientCountry {
+    grid-column: 1/3;
   }
 }

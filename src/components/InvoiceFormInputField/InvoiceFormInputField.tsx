@@ -23,8 +23,11 @@ export const InvoiceFormInputField = ({
         {labelText}
       </span>
       <input
+        autoComplete="off"
+        id={name}
         type={type}
         className={styles.invoiceFormInputField__inputField}
+        placeholder={placeholder}
         {...field}
         {...props}
       />

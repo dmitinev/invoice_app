@@ -1,5 +1,6 @@
+import { InvoiceFormDateField } from 'components/InvoiceFormDateField';
 import { InvoiceFormInputField } from 'components/InvoiceFormInputField';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { Invoice } from 'src/types';
 import styles from './InvoiceForm.module.scss';
 
@@ -14,8 +15,11 @@ interface InvoiceFormValues {
   country: string;
   clientName: string;
   clientEmail: string;
+  clientStreet: string;
   clientCity: string;
   clientPostCode: string;
+  clientCountry: string;
+  invoiceDate: string;
 }
 
 export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
@@ -26,8 +30,11 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
     country: invoice?.senderAddress.country ?? '',
     clientName: invoice?.clientName ?? '',
     clientEmail: invoice?.clientEmail ?? '',
+    clientStreet: invoice?.clientAddress.street ?? '',
     clientCity: invoice?.clientAddress.city ?? '',
     clientPostCode: invoice?.clientAddress.postCode ?? '',
+    clientCountry: invoice?.clientAddress.country ?? '',
+    invoiceDate: invoice?.createdAt ?? '',
   };
 
   return (
@@ -43,73 +50,84 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
               labelText="Street Address"
             />
           </div>
-          <label
-            className={`${styles.invoiceForm__label} ${styles.invoiceForm__labelCity}`}
-            htmlFor="city"
-          >
-            <span className={styles.invoiceForm__fieldCaption}>City</span>
-            <Field
-              className={styles.invoiceForm__inputField}
+          <div className={styles.invoiceForm__labelCity}>
+            <InvoiceFormInputField
               type="text"
               name="city"
               placeholder=""
+              labelText="City"
             />
-          </label>
-          <label
-            className={`${styles.invoiceForm__label} ${styles.invoiceForm__labelpostCode}`}
-            htmlFor="postCode"
-          >
-            <span className={styles.invoiceForm__fieldCaption}>Post Code</span>
-            <Field
-              className={styles.invoiceForm__inputField}
+          </div>
+          <div className={styles.invoiceForm__labelpostCode}>
+            <InvoiceFormInputField
               type="text"
               name="postCode"
               placeholder=""
+              labelText="Post Code"
             />
-          </label>
-          <label
-            className={`${styles.invoiceForm__label} ${styles.invoiceForm__labelCountry}`}
-            htmlFor="country"
-          >
-            <span className={styles.invoiceForm__fieldCaption}>Country</span>
-            <Field
-              className={styles.invoiceForm__inputField}
+          </div>
+          <div className={styles.invoiceForm__labelCountry}>
+            <InvoiceFormInputField
               type="text"
               name="country"
               placeholder=""
+              labelText="Country"
             />
-          </label>
+          </div>
         </div>
         <div className={styles.invoiceForm__receiverBlock}>
           <h3 className={styles.invoiceForm__sectionHeading}>Bill To</h3>
-          <label
-            className={`${styles.invoiceForm__label} ${styles.invoiceForm__labelclientName}`}
-            htmlFor="clientName"
-          >
-            <span className={styles.invoiceForm__fieldCaption}>
-              Client’s Name
-            </span>
-            <Field
-              className={styles.invoiceForm__inputField}
+          <div className={styles.invoiceForm__labelclientName}>
+            <InvoiceFormInputField
               type="text"
               name="clientName"
               placeholder=""
+              labelText="Client’s Name"
             />
-          </label>
-          <label
-            className={`${styles.invoiceForm__label} ${styles.invoiceForm__labelclientMail}`}
-            htmlFor="clientEmail"
-          >
-            <span className={styles.invoiceForm__fieldCaption}>
-              Client’s Email
-            </span>
-            <Field
-              className={styles.invoiceForm__inputField}
+          </div>
+          <div className={styles.invoiceForm__labelclientMail}>
+            <InvoiceFormInputField
               type="email"
               name="clientEmail"
               placeholder=""
+              labelText="Client’s Email"
             />
-          </label>
+          </div>
+          <div className={styles.invoiceForm__labelclientStreet}>
+            <InvoiceFormInputField
+              type="text"
+              name="clientStreet"
+              placeholder=""
+              labelText="Street Address"
+            />
+          </div>
+          <div className={styles.invoiceForm__labelclientCity}>
+            <InvoiceFormInputField
+              type="text"
+              name="clientCity"
+              placeholder=""
+              labelText="City"
+            />
+          </div>
+          <div className={styles.invoiceForm__labelClientPostCode}>
+            <InvoiceFormInputField
+              type="text"
+              name="clientPostCode"
+              placeholder=""
+              labelText="Post Code"
+            />
+          </div>
+          <div className={styles.invoiceForm__labelClientCountry}>
+            <InvoiceFormInputField
+              type="text"
+              name="clientCountry"
+              placeholder=""
+              labelText="Country"
+            />
+          </div>
+        </div>
+        <div className={styles.invoiceForm__invoiceDateBlock}>
+          <InvoiceFormDateField labelText="Invoice Date" name="invoiceDate" />
         </div>
       </Form>
     </Formik>
