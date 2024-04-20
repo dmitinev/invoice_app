@@ -16,7 +16,7 @@
 }
 
 .invoiceDetailsPage {
-  height: 100dvh;
+  height: auto;
   @include pc_display {
     display: grid;
     grid-template-columns: 103px 1fr;
@@ -50,6 +50,7 @@
     padding: 25px 24px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    overflow: scroll;
     @include tablet_display {
       grid-template-columns: repeat(4, 1fr);
       padding: 33px 32px;

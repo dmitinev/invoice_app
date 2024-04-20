@@ -25,7 +25,7 @@
   background-color: var(--invoiceEditBGColor);
   padding: 0 24px;
   width: 100%;
-  height: calc(100% + 92px);
+  height: fit-content;
   position: absolute;
   top: 73px;
   z-index: 5;

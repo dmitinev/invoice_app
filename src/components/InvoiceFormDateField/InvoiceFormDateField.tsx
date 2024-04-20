@@ -1,5 +1,7 @@
 import { useField } from 'formik';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import 'react-datepicker/dist/react-datepicker.css';
 import styles from './InvoiceFormDateField.module.scss';
 import IntrinsicElements = React.JSX.IntrinsicElements;
 
@@ -21,10 +23,14 @@ export const InvoiceFormDateField = ({ labelText, name }: inputProps) => {
         {labelText}
       </span>
       <DatePicker
-        minDate={field.value}
+        popperPlacement="top-start"
+        showYearDropdown
+        showMonthDropdown
+        showIcon={false}
         name={field.name}
         id={field.name}
         wrapperClassName={styles.invoiceFormDateField__inputField}
+        popperClassName={styles.invoiceFormDateField__dateModal}
         dateFormat="YYYY-MM-dd"
         onChange={handleChange}
         selected={meta.value}

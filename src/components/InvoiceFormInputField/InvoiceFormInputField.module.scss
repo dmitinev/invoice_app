@@ -21,6 +21,7 @@
   }
   &__inputField {
     @include headingSVariant;
+    width: 100%;
     border: solid 1px var(--invoiceFormFieldBorderColor);
     border-radius: 4px;
     padding: 18px 0 18px 20px;
