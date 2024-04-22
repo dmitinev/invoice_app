@@ -33,6 +33,8 @@
     color: var(--noInfoPageTextColor);
     margin-top: 23px;
     text-align: center;
+    line-height: 1.15;
+    letter-spacing: -0.1px;
   }
   &__link {
     @include bodyVariant;

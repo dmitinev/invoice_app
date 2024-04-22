@@ -1,3 +1,4 @@
+import { NoInfoPage } from 'components/NoInfoPage';
 import { Link } from 'react-router-dom';
 import { useInvoices } from 'src/store/features/Invoice/useInvoices';
 import { Container } from '../Container';
@@ -9,13 +10,15 @@ export const InvoicesPalette = () => {
   return (
     <section className={styles.invoicesPalette}>
       <Container>
-        {invoices.map((invoice) => (
-          <div key={invoice.id} className={styles.invoicesPalette__invoice}>
-            <Link to={`${import.meta.env.BASE_URL}${invoice.id}`}>
-              <InvoiceCard {...invoice} />
-            </Link>
-          </div>
-        ))}
+        {invoices.length === 0 && <NoInfoPage text="There is nothing here" />}
+        {invoices.length > 0 &&
+          invoices.map((invoice) => (
+            <div key={invoice.id} className={styles.invoicesPalette__invoice}>
+              <Link to={`${import.meta.env.BASE_URL}${invoice.id}`}>
+                <InvoiceCard {...invoice} />
+              </Link>
+            </div>
+          ))}
       </Container>
     </section>
   );
