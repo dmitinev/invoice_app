@@ -43,6 +43,12 @@ const invoiceSlice = createSlice({
         });
       });
     },
+    deleteInvoice: (state, action: PayloadAction<string>) => {
+      state.invoices = state.invoices.filter(
+        (invoice) => invoice.id !== action.payload,
+      );
+      state.filteredInvoices = state.invoices;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -62,4 +68,4 @@ const invoiceSlice = createSlice({
 });
 
 export default invoiceSlice.reducer;
-export const { toggleCheckbox } = invoiceSlice.actions;
+export const { toggleCheckbox, deleteInvoice } = invoiceSlice.actions;

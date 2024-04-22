@@ -1,8 +1,14 @@
 import styles from './ConfirmModal.module.scss';
 
-interface ConfirmModalProps {}
+interface ConfirmModalProps {
+  confirmHandler?: () => void;
+  cancelHandler?: () => void;
+}
 
-export const ConfirmModal = ({}: ConfirmModalProps) => {
+export const ConfirmModal = ({
+  confirmHandler,
+  cancelHandler,
+}: ConfirmModalProps) => {
   return (
     <div className={styles.confirmModal__wrapper}>
       <div className={styles.confirmModal__modal}>
@@ -12,8 +18,18 @@ export const ConfirmModal = ({}: ConfirmModalProps) => {
           undone.
         </p>
         <div className={styles.confirmModal__buttons}>
-          <button className={styles.confirmModal__buttonCancel}>Cancel</button>
-          <button className={styles.confirmModal__buttonDelete}>Delete</button>
+          <button
+            className={styles.confirmModal__buttonCancel}
+            onClick={cancelHandler}
+          >
+            Cancel
+          </button>
+          <button
+            className={styles.confirmModal__buttonDelete}
+            onClick={confirmHandler}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
