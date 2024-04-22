@@ -1,4 +1,14 @@
 .invoiceForm {
+  @include tablet_display {
+    max-width: 504px;
+  }
+  @include tablet_display {
+    min-width: 515px;
+  }
+  @include pc_display {
+    margin-right: 56px;
+    min-width: 0;
+  }
   &__senderBlock {
     display: grid;
     grid-template-columns: 1fr 1fr;

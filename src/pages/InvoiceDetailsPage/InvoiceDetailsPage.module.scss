@@ -16,7 +16,7 @@
 }
 
 .invoiceDetailsPage {
-  height: auto;
+  height: 100dvh;
   @include pc_display {
     display: grid;
     grid-template-columns: 103px 1fr;

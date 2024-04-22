@@ -19,6 +19,9 @@
     top: 80px;
     z-index: 4;
   }
+  @include pc_display {
+    top: 0;
+  }
 
 }
 .invoiceEditPage {
@@ -29,12 +32,21 @@
   position: absolute;
   top: 73px;
   z-index: 5;
+
   @include tablet_display {
     top: 80px;
     height: 100%;
     max-width: 616px;
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+  }
+  @include pc_display {
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
   }
   &__backLinks {
     margin-top: 33px;
