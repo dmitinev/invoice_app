@@ -12,8 +12,9 @@ import { InvoiceEditBtn } from 'src/components/InvoiceEditBtn';
 import { InvoiceItemLine } from 'src/components/InvoiceItemLine';
 import { InvoiceMakePaidBtn } from 'src/components/InvoiceMakePaidBtn';
 import { InvoiceEditPage } from 'src/pages/InvoiceEditPage';
+import { deleteInvoice } from 'src/store/features/Invoice/InvoiceSlice.ts';
 import { selectInvoiceById } from 'src/store/features/Invoice/invoiceSelectors';
-import { useAppSelector } from 'src/store/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'src/store/redux-hooks';
 import { Page404 } from '../Page404';
 import styles from './InvoiceDetailsPage.module.scss';
 
@@ -25,6 +26,7 @@ export const InvoiceDetailsPage = () => {
   const invoice = useAppSelector((state) =>
     selectInvoiceById(state, invoiceId as string),
   );
+  const dispatch = useAppDispatch();
 
   const editPageHandler = useCallback(() => {
     setShowEditPage((prev) => !prev);
@@ -32,6 +34,14 @@ export const InvoiceDetailsPage = () => {
 
   const cancelDeleteModalHandler = useCallback(() => {
     setShowDeleteModal((prev) => !prev);
+  }, []);
+
+  const deleteInvoiceHandler = useCallback(() => {
+    if (invoice) {
+      dispatch(deleteInvoice(invoice.id));
+      setShowDeleteModal(false);
+      navigate(`${import.meta.env.BASE_URL}`);
+    }
   }, []);
 
   if (!invoice) {
@@ -326,7 +336,10 @@ export const InvoiceDetailsPage = () => {
       </AnimatePresence>
       {showDeleteModal &&
         createPortal(
-          <ConfirmModal cancelHandler={cancelDeleteModalHandler} />,
+          <ConfirmModal
+            cancelHandler={cancelDeleteModalHandler}
+            confirmHandler={deleteInvoiceHandler}
+          />,
           document.body,
         )}
     </>
