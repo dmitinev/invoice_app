@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import axios from 'axios';
 import {
   FLUSH,
   PAUSE,
@@ -32,6 +33,11 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+      thunk: {
+        extraArgument: {
+          client: axios,
+        },
       },
     }),
 });

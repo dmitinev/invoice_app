@@ -10,10 +10,10 @@ interface InvoiceFormProps {
 }
 
 interface InvoiceFormValues {
-  streetAddress: string;
-  city: string;
-  postCode: string;
-  country: string;
+  senderStreetAddress: string;
+  senderCity: string;
+  senderPostCode: string;
+  senderCountry: string;
   clientName: string;
   clientEmail: string;
   clientStreet: string;
@@ -22,14 +22,15 @@ interface InvoiceFormValues {
   clientCountry: string;
   invoiceDate: string;
   invoicePaymentPeriod: number;
+  projectDescription: string;
 }
 
 export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
   const initialValues: InvoiceFormValues = {
-    streetAddress: invoice?.senderAddress.street ?? '',
-    city: invoice?.senderAddress.city ?? '',
-    postCode: invoice?.senderAddress.postCode ?? '',
-    country: invoice?.senderAddress.country ?? '',
+    senderStreetAddress: invoice?.senderAddress.street ?? '',
+    senderCity: invoice?.senderAddress.city ?? '',
+    senderPostCode: invoice?.senderAddress.postCode ?? '',
+    senderCountry: invoice?.senderAddress.country ?? '',
     clientName: invoice?.clientName ?? '',
     clientEmail: invoice?.clientEmail ?? '',
     clientStreet: invoice?.clientAddress.street ?? '',
@@ -38,6 +39,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
     clientCountry: invoice?.clientAddress.country ?? '',
     invoiceDate: invoice?.createdAt ?? '',
     invoicePaymentPeriod: invoice?.paymentTerms ?? 0,
+    projectDescription: invoice?.description ?? '',
   };
 
   return (
@@ -48,7 +50,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
           <div className={styles.invoiceForm__labelStrretAdr}>
             <InvoiceFormInputField
               type="text"
-              name="streetAddress"
+              name="senderStreetAddress"
               placeholder=""
               labelText="Street Address"
             />
@@ -56,7 +58,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
           <div className={styles.invoiceForm__labelCity}>
             <InvoiceFormInputField
               type="text"
-              name="city"
+              name="senderCity"
               placeholder=""
               labelText="City"
             />
@@ -64,7 +66,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
           <div className={styles.invoiceForm__labelpostCode}>
             <InvoiceFormInputField
               type="text"
-              name="postCode"
+              name="senderPostCode"
               placeholder=""
               labelText="Post Code"
             />
@@ -72,7 +74,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
           <div className={styles.invoiceForm__labelCountry}>
             <InvoiceFormInputField
               type="text"
-              name="country"
+              name="senderCountry"
               placeholder=""
               labelText="Country"
             />
@@ -136,6 +138,14 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
           <InvoiceFormSelectField
             labelText="Payment Terms"
             name="invoicePaymentPeriod"
+          />
+        </div>
+        <div className={styles.invoiceForm__labelProjectDescription}>
+          <InvoiceFormInputField
+            type="text"
+            name="projectDescription"
+            placeholder=""
+            labelText="Project Description"
           />
         </div>
       </Form>

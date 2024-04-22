@@ -18,6 +18,9 @@
   &__invoiceSelectDateBlock {
     margin-top: 25px;
   }
+  &__labelProjectDescription {
+    margin-top: 25px;
+  }
   &__sectionHeading {
     grid-column: 1 / 3;
     @include headingSVariant;
