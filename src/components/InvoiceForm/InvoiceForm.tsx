@@ -1,5 +1,6 @@
 import { InvoiceFormDateField } from 'components/InvoiceFormDateField';
 import { InvoiceFormInputField } from 'components/InvoiceFormInputField';
+import { InvoiceFormSelectField } from 'components/InvoiceFormSelectField';
 import { Form, Formik } from 'formik';
 import { Invoice } from 'src/types';
 import styles from './InvoiceForm.module.scss';
@@ -20,6 +21,7 @@ interface InvoiceFormValues {
   clientPostCode: string;
   clientCountry: string;
   invoiceDate: string;
+  invoicePaymentPeriod: number;
 }
 
 export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
@@ -35,6 +37,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
     clientPostCode: invoice?.clientAddress.postCode ?? '',
     clientCountry: invoice?.clientAddress.country ?? '',
     invoiceDate: invoice?.createdAt ?? '',
+    invoicePaymentPeriod: invoice?.paymentTerms ?? 0,
   };
 
   return (
@@ -128,6 +131,12 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
         </div>
         <div className={styles.invoiceForm__invoiceDateBlock}>
           <InvoiceFormDateField labelText="Invoice Date" name="invoiceDate" />
+        </div>
+        <div className={styles.invoiceForm__invoiceSelectDateBlock}>
+          <InvoiceFormSelectField
+            labelText="Payment Terms"
+            name="invoicePaymentPeriod"
+          />
         </div>
       </Form>
     </Formik>

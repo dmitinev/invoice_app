@@ -15,6 +15,9 @@
   &__invoiceDateBlock {
     margin-top: 41px;
   }
+  &__invoiceSelectDateBlock {
+    margin-top: 25px;
+  }
   &__sectionHeading {
     grid-column: 1 / 3;
     @include headingSVariant;
