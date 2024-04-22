@@ -14,6 +14,9 @@
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 23px;
     grid-row-gap: 25px;
+    @include tablet_display {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
   &__receiverBlock{
     margin-top: 41px;
@@ -21,20 +24,45 @@
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 23px;
     grid-row-gap: 25px;
+    @include tablet_display {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  &__invoiceDateAndTermsBlock {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 23px;
+    grid-row-gap: 25px;
+    grid-column: 1/3;
+    @include tablet_display {
+      grid-column: 1/4;
+    }
   }
   &__invoiceDateBlock {
-    margin-top: 41px;
+    grid-column: 1/3;
+    @include tablet_display {
+      grid-column: 1/2;
+    }
   }
   &__invoiceSelectDateBlock {
-    margin-top: 25px;
+    grid-column: 1/3;
+    @include tablet_display {
+      grid-column: 2/3;
+    }
   }
   &__labelProjectDescription {
-    margin-top: 25px;
+    grid-column: 1/3;
+    @include tablet_display {
+      grid-column: 1/4;
+    }
   }
   &__sectionHeading {
     grid-column: 1 / 3;
     @include headingSVariant;
     color: #7c5dfa;
+    @include tablet_display {
+      grid-column: 1 / 4;
+    }
   }
   &__label {
     display: flex;
@@ -42,32 +70,62 @@
   }
   &__labelStrretAdr {
     grid-column: 1/3;
+    @include tablet_display {
+      grid-column: 1 / 4;
+    }
   }
   &__labelCity {
     grid-column: 1/2;
+    @include tablet_display {
+      grid-column: 1/2;
+    }
   }
   &__labelpostCode {
     grid-column: 2/3;
+    @include tablet_display {
+      grid-column: 2/3;
+    }
   }
   &__labelCountry {
     grid-column: 1/3;
+    @include tablet_display {
+      grid-column: 3/4;
+    }
   }
   &__labelclientName {
     grid-column: 1/3;
+    @include tablet_display {
+      grid-column: 1/4;
+    }
   }
   &__labelclientMail {
     grid-column: 1/3;
+    @include tablet_display {
+      grid-column: 1/4;
+    }
   }
   &__labelclientStreet {
     grid-column: 1/3;
+    @include tablet_display {
+      grid-column: 1/4;
+    }
   }
   &__labelclientCity {
     grid-column: 1/2;
+    @include tablet_display {
+      grid-column: 1/2;
+    }
   }
   &__labelClientPostCode {
     grid-column: 2/3;
+    @include tablet_display {
+      grid-column: 2/3;
+    }
   }
   &__labelClientCountry {
     grid-column: 1/3;
+    @include tablet_display {
+      grid-column: 3/4;
+    }
   }
 }

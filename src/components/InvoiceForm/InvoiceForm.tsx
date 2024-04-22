@@ -130,23 +130,28 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
               labelText="Country"
             />
           </div>
-        </div>
-        <div className={styles.invoiceForm__invoiceDateBlock}>
-          <InvoiceFormDateField labelText="Invoice Date" name="invoiceDate" />
-        </div>
-        <div className={styles.invoiceForm__invoiceSelectDateBlock}>
-          <InvoiceFormSelectField
-            labelText="Payment Terms"
-            name="invoicePaymentPeriod"
-          />
-        </div>
-        <div className={styles.invoiceForm__labelProjectDescription}>
-          <InvoiceFormInputField
-            type="text"
-            name="projectDescription"
-            placeholder=""
-            labelText="Project Description"
-          />
+          <div className={styles.invoiceForm__invoiceDateAndTermsBlock}>
+            <div className={styles.invoiceForm__invoiceDateBlock}>
+              <InvoiceFormDateField
+                labelText="Invoice Date"
+                name="invoiceDate"
+              />
+            </div>
+            <div className={styles.invoiceForm__invoiceSelectDateBlock}>
+              <InvoiceFormSelectField
+                labelText="Payment Terms"
+                name="invoicePaymentPeriod"
+              />
+            </div>
+          </div>
+          <div className={styles.invoiceForm__labelProjectDescription}>
+            <InvoiceFormInputField
+              type="text"
+              name="projectDescription"
+              placeholder=""
+              labelText="Project Description"
+            />
+          </div>
         </div>
       </Form>
     </Formik>
