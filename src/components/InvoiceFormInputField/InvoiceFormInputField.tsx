@@ -16,7 +16,8 @@ export const InvoiceFormInputField = ({
   type,
   ...props
 }: inputProps) => {
-  const [field] = useField<string>(name);
+  const [field] = useField<string | number>(name);
+
   return (
     <label className={styles.invoiceFormInputField} htmlFor={field.name}>
       <span className={styles.invoiceFormInputField__fieldCaption}>

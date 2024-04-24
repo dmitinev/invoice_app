@@ -128,4 +128,53 @@
       grid-column: 3/4;
     }
   }
+  &__itemsBlock {
+    margin-top: 69px;
+  }
+  &__itemsBlockHeading {
+    font-family: $font;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.78;
+    letter-spacing: -0.38px;
+    color: #777f98
+  }
+  &__itemsBlockItems {
+    margin-top: 22px;
+  }
+  &__itemsBlockItemsFields {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 16px;
+    grid-row-gap: 25px;
+    @include tablet_display {
+      grid-template-columns: 214px 46px 100px 100px 1fr;
+    }
+    &:not(:last-child) {
+      margin-bottom: 49px;
+      @include tablet_display {
+        margin-bottom: 16px;
+      }
+    }
+  }
+  &__itemsBlockItemsName {
+    grid-column: 1/5;
+    @include tablet_display {
+      grid-column: 1/2;
+    }
+  }
+  &__itemsBlockItemsQTY {
+    grid-column: 1/2;
+    @include tablet_display {
+      grid-column: 2/3;
+    }
+  }
+  &__itemsBlockItemsPrice {
+    grid-column: 2/3;
+    @include tablet_display {
+      grid-column: 3/4;
+    }
+  }
 }
