@@ -5,11 +5,13 @@ import styles from './DetailsStatusBar.module.scss';
 interface DetailsStatusBarProps {
   status: string;
   editPageHandler: () => void;
+  deletePageHandler: () => void;
 }
 
 export const DetailsStatusBar = ({
   status,
   editPageHandler,
+  deletePageHandler,
 }: DetailsStatusBarProps) => {
   const getStatusClass = (status: string, mainElementClassName: string) => {
     if (status === 'paid') {
@@ -40,7 +42,7 @@ export const DetailsStatusBar = ({
           <InvoiceEditBtn text="Edit" clickHandler={editPageHandler} />
         </div>
         <div className={styles.detailsStatusBar__button}>
-          <InvoiceDeleteBtn text="Delete" />
+          <InvoiceDeleteBtn text="Delete" clickHandler={deletePageHandler} />
         </div>
         <div className={styles.detailsStatusBar__button}>
           <InvoiceMakePaidBtn

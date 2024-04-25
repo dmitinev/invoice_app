@@ -81,6 +81,7 @@ export const InvoiceDetailsPage = () => {
                 <DetailsStatusBar
                   status={invoice.status}
                   editPageHandler={editPageHandler}
+                  deletePageHandler={cancelDeleteModalHandler}
                 />
               </Container>
             </section>

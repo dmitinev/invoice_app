@@ -1,5 +1,6 @@
 import { InvoiceFormDateField } from 'components/InvoiceFormDateField';
 import { InvoiceFormInputField } from 'components/InvoiceFormInputField';
+import { InvoiceFormItemDelBtn } from 'components/InvoiceFormItemDelBtn';
 import { InvoiceFormSelectField } from 'components/InvoiceFormSelectField';
 import { InvoiceFormTotalField } from 'components/InvoiceFormTotalField';
 import { FieldArray, Form, Formik } from 'formik';
@@ -43,13 +44,17 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
     invoicePaymentPeriod: invoice?.paymentTerms ?? 0,
     projectDescription: invoice?.description ?? '',
     invoiceItems: invoice?.items ?? [
-      { quantity: 0, name: '', price: 0, total: 0 },
+      { name: '', quantity: 0, price: 0, total: 0 },
     ],
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={() => {}}>
-      {(values) => (
+    <Formik
+      initialValues={initialValues}
+      onSubmit={() => {}}
+      enableReinitialize
+    >
+      {({ values, setValues }) => (
         <Form className={styles.invoiceForm}>
           <div className={styles.invoiceForm__senderBlock}>
             <h3 className={styles.invoiceForm__sectionHeading}>Bill From</h3>
@@ -165,7 +170,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
               <FieldArray
                 name="invoiceItems"
                 render={(_) => {
-                  return values.initialValues.invoiceItems.map((_, index) => {
+                  return values.invoiceItems.map((_, index) => {
                     return (
                       <div
                         className={styles.invoiceForm__itemsBlockItemsFields}
@@ -175,7 +180,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
                           className={styles.invoiceForm__itemsBlockItemsName}
                         >
                           <InvoiceFormInputField
-                            name={`invoiceItems[${index}].name`}
+                            name={`invoiceItems[${index}]["name"]`}
                             labelText="Item Name"
                             type="text"
                             placeholder=""
@@ -183,7 +188,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
                         </div>
                         <div className={styles.invoiceForm__itemsBlockItemsQTY}>
                           <InvoiceFormInputField
-                            name={`invoiceItems[${index}].quantity`}
+                            name={`invoiceItems[${index}]["quantity"]`}
                             labelText="Qty"
                             type="text"
                             placeholder=""
@@ -193,7 +198,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
                           className={styles.invoiceForm__itemsBlockItemsPrice}
                         >
                           <InvoiceFormInputField
-                            name={`invoiceItems[${index}].price`}
+                            name={`invoiceItems[${index}]["price"]`}
                             labelText="Price"
                             type="text"
                             placeholder=""
@@ -203,11 +208,26 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
                           className={styles.invoiceForm__itemsBlockItemsTotal}
                         >
                           <InvoiceFormTotalField
-                            name={`invoiceItems[${index}].total`}
+                            name={`invoiceItems[${index}]["total"]`}
                             labelText="Total"
                             type="text"
                             placeholder=""
                             index={index}
+                          />
+                        </div>
+                        <div
+                          className={styles.invoiceForm__itemsBlockItemsDelBtn}
+                        >
+                          <InvoiceFormItemDelBtn
+                            type="button"
+                            clickHandler={() =>
+                              setValues({
+                                ...values,
+                                invoiceItems: values.invoiceItems.filter(
+                                  (_, i) => i !== index,
+                                ),
+                              })
+                            }
                           />
                         </div>
                       </div>
