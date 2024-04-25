@@ -30,30 +30,32 @@ export interface InvoiceFormValues {
   invoiceItems: Item[];
 }
 
-const validationSchema = Yup.object().shape({
-  senderStreetAddress: Yup.string().required(),
-  senderCity: Yup.string().required(),
-  senderPostCode: Yup.string().required(),
-  clientName: Yup.string().required(),
-  clientEmail: Yup.string().required(),
-  clientStreet: Yup.string().required(),
-  clientCity: Yup.string().required(),
-  clientPostCode: Yup.string().required(),
-  clientCountry: Yup.string().required(),
-  invoiceDate: Yup.date().required(),
-  invoicePaymentPeriod: Yup.string().required(),
-  projectDescription: Yup.string().required(),
-  invoiceItems: Yup.array()
-    .of(
-      object({
-        name: Yup.string().required(),
-        quantity: Yup.number().required(),
-        price: Yup.number().required(),
-        total: Yup.number().required(),
-      }),
-    )
-    .required(),
-});
+const validationSchema: Yup.ObjectSchema<InvoiceFormValues> =
+  Yup.object().shape({
+    senderStreetAddress: Yup.string().required(),
+    senderCity: Yup.string().required(),
+    senderPostCode: Yup.string().required(),
+    senderCountry: Yup.string().required(),
+    clientName: Yup.string().required(),
+    clientEmail: Yup.string().required(),
+    clientStreet: Yup.string().required(),
+    clientCity: Yup.string().required(),
+    clientPostCode: Yup.string().required(),
+    clientCountry: Yup.string().required(),
+    invoiceDate: Yup.string().required(),
+    invoicePaymentPeriod: Yup.number().required(),
+    projectDescription: Yup.string().required(),
+    invoiceItems: Yup.array()
+      .of(
+        object({
+          name: Yup.string().required(),
+          quantity: Yup.number().required(),
+          price: Yup.number().required(),
+          total: Yup.number().required(),
+        }),
+      )
+      .required(),
+  });
 
 export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
   const initialValues: InvoiceFormValues = {
