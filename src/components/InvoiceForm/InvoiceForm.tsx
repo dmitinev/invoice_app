@@ -37,7 +37,7 @@ const validationSchema: Yup.ObjectSchema<InvoiceFormValues> =
     senderPostCode: Yup.string().required(),
     senderCountry: Yup.string().required(),
     clientName: Yup.string().required(),
-    clientEmail: Yup.string().required(),
+    clientEmail: Yup.string().email().required(),
     clientStreet: Yup.string().required(),
     clientCity: Yup.string().required(),
     clientPostCode: Yup.string().required(),
