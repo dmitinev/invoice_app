@@ -47,7 +47,9 @@ export const InvoiceFormTotalField = ({
         type={type}
         className={styles.invoiceFormTotalField__inputField}
         placeholder={placeholder}
-        {...field}
+        value={Number(field.value).toFixed(2)}
+        onChange={field.onChange}
+        onBlur={field.onBlur}
         {...props}
       />
     </label>

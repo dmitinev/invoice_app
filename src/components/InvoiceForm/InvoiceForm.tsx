@@ -220,14 +220,14 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
                         >
                           <InvoiceFormItemDelBtn
                             type="button"
-                            clickHandler={() =>
+                            clickHandler={function () {
                               setValues({
                                 ...values,
                                 invoiceItems: values.invoiceItems.filter(
                                   (_, i) => i !== index,
                                 ),
-                              })
-                            }
+                              });
+                            }}
                           />
                         </div>
                       </div>

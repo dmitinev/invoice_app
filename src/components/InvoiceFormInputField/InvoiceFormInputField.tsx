@@ -29,7 +29,13 @@ export const InvoiceFormInputField = ({
         type={type}
         className={styles.invoiceFormInputField__inputField}
         placeholder={placeholder}
-        {...field}
+        value={
+          typeof field.value === 'number' && !field.name.includes('quantity')
+            ? field.value.toFixed(2)
+            : field.value
+        }
+        onChange={field.onChange}
+        onBlur={field.onBlur}
         {...props}
       />
     </label>
