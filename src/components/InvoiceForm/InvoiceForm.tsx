@@ -5,6 +5,8 @@ import { InvoiceFormSelectField } from 'components/InvoiceFormSelectField';
 import { InvoiceFormTotalField } from 'components/InvoiceFormTotalField';
 import { FieldArray, Form, Formik } from 'formik';
 import { Invoice, Item } from 'src/types';
+import * as Yup from 'yup';
+import { object } from 'yup';
 import styles from './InvoiceForm.module.scss';
 
 interface InvoiceFormProps {
@@ -27,6 +29,31 @@ export interface InvoiceFormValues {
   projectDescription: string;
   invoiceItems: Item[];
 }
+
+const validationSchema = Yup.object().shape({
+  senderStreetAddress: Yup.string().required(),
+  senderCity: Yup.string().required(),
+  senderPostCode: Yup.string().required(),
+  clientName: Yup.string().required(),
+  clientEmail: Yup.string().required(),
+  clientStreet: Yup.string().required(),
+  clientCity: Yup.string().required(),
+  clientPostCode: Yup.string().required(),
+  clientCountry: Yup.string().required(),
+  invoiceDate: Yup.date().required(),
+  invoicePaymentPeriod: Yup.string().required(),
+  projectDescription: Yup.string().required(),
+  invoiceItems: Yup.array()
+    .of(
+      object({
+        name: Yup.string().required(),
+        quantity: Yup.number().required(),
+        price: Yup.number().required(),
+        total: Yup.number().required(),
+      }),
+    )
+    .required(),
+});
 
 export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
   const initialValues: InvoiceFormValues = {
@@ -52,6 +79,7 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
     <Formik
       initialValues={initialValues}
       onSubmit={() => {}}
+      validationSchema={validationSchema}
       enableReinitialize
     >
       {({ values, setValues }) => (
