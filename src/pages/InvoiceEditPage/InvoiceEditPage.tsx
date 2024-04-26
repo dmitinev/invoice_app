@@ -52,7 +52,10 @@ export const InvoiceEditPage = ({
                 {invoice.id}
               </h1>
               <div className={styles.invoiceEditPage__form}>
-                <InvoiceForm invoice={invoice} />
+                <InvoiceForm
+                  invoice={invoice}
+                  cancelChangesHandler={closeHandler}
+                />
               </div>
             </div>
           </motion.div>

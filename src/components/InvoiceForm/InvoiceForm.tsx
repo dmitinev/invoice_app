@@ -11,6 +11,7 @@ import styles from './InvoiceForm.module.scss';
 
 interface InvoiceFormProps {
   invoice?: Invoice;
+  cancelChangesHandler?: () => void;
 }
 
 export interface InvoiceFormValues {
@@ -57,7 +58,10 @@ const validationSchema: Yup.ObjectSchema<InvoiceFormValues> =
       .required(),
   });
 
-export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
+export const InvoiceForm = ({
+  invoice,
+  cancelChangesHandler,
+}: InvoiceFormProps) => {
   const initialValues: InvoiceFormValues = {
     senderStreetAddress: invoice?.senderAddress.street ?? '',
     senderCity: invoice?.senderAddress.city ?? '',
@@ -281,6 +285,21 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
                 + Add New Item
               </button>
             </div>
+          </div>
+          <div className={styles.invoiceForm__buttonsBar}>
+            <button
+              type="button"
+              className={styles.invoiceForm__btnCanceChanges}
+              onClick={cancelChangesHandler}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              className={styles.invoiceForm__btnSaveChanges}
+            >
+              Save Changes
+            </button>
           </div>
         </Form>
       )}
