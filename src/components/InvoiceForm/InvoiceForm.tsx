@@ -265,6 +265,21 @@ export const InvoiceForm = ({ invoice }: InvoiceFormProps) => {
                   });
                 }}
               />
+              <button
+                className={styles.invoiceForm__itemsBlockItemsAddBtn}
+                type="button"
+                onClick={function () {
+                  setValues({
+                    ...values,
+                    invoiceItems: [
+                      ...values.invoiceItems,
+                      { name: '', quantity: 0, price: 0, total: 0 },
+                    ],
+                  });
+                }}
+              >
+                + Add New Item
+              </button>
             </div>
           </div>
         </Form>

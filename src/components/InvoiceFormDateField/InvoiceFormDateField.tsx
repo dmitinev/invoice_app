@@ -33,7 +33,7 @@ export const InvoiceFormDateField = ({ labelText, name }: inputProps) => {
         popperClassName={styles.invoiceFormDateField__dateModal}
         dateFormat="YYYY-MM-dd"
         onChange={handleChange}
-        selected={meta.value}
+        selected={meta.value ?? new Date().toLocaleDateString()}
       />
     </label>
   );
