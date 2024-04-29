@@ -14,6 +14,7 @@
 }
 
 .invoiceForm {
+  position: relative;
   @include tablet_display {
     max-width: 504px;
   }
@@ -269,5 +270,19 @@
     &:hover {
       background-color: #9277ff;
     }
+  }
+  &__errorBlock {
+    //margin-top: 40px;
+    @include headingSVariant;
+    font-size: 11px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.21px;
+    color: #ec5757;
+    position: absolute;
+    bottom: 121px;
+    left: 0;
   }
 }

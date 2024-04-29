@@ -90,7 +90,7 @@ export const InvoiceForm = ({
       validationSchema={validationSchema}
       enableReinitialize
     >
-      {({ values, setValues }) => (
+      {({ values, setValues, errors, touched }) => (
         <Form className={styles.invoiceForm}>
           <div className={styles.invoiceForm__senderBlock}>
             <h3 className={styles.invoiceForm__sectionHeading}>Bill From</h3>
@@ -288,6 +288,12 @@ export const InvoiceForm = ({
               </button>
             </div>
           </div>
+          {Object.keys(errors).some((item, index) => !!item[index]) &&
+            Object.keys(touched).some((item, index) => !!item[index]) && (
+              <div className={styles.invoiceForm__errorBlock}>
+                - All fields must be added
+              </div>
+            )}
           <div className={styles.invoiceForm__buttonsBar}>
             <button
               type="button"

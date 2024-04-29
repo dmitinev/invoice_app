@@ -16,7 +16,7 @@ export const InvoiceFormInputField = ({
   type,
   ...props
 }: inputProps) => {
-  const [field] = useField<string | number>(name);
+  const [field, meta] = useField<string | number>(name);
 
   return (
     <label className={styles.invoiceFormInputField} htmlFor={field.name}>
@@ -27,7 +27,7 @@ export const InvoiceFormInputField = ({
         autoComplete="off"
         id={name}
         type={type}
-        className={styles.invoiceFormInputField__inputField}
+        className={`${styles.invoiceFormInputField__inputField} ${meta.touched && meta.error ? styles.invoiceFormInputField__fieldError : ''}`}
         placeholder={placeholder}
         value={
           typeof field.value === 'number' && !field.name.includes('quantity')

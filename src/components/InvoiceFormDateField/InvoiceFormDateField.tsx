@@ -1,4 +1,5 @@
 import { useField } from 'formik';
+import React from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -17,6 +18,10 @@ export const InvoiceFormDateField = ({ labelText, name }: inputProps) => {
     helpers.setValue(value);
   };
 
+  const keyDownHandler = (e: React.KeyboardEvent<HTMLDivElement>): void => {
+    e.preventDefault();
+  };
+
   return (
     <label className={styles.invoiceFormDateField} htmlFor={field.name}>
       <span className={styles.invoiceFormDateField__fieldCaption}>
@@ -27,6 +32,7 @@ export const InvoiceFormDateField = ({ labelText, name }: inputProps) => {
         showYearDropdown
         showMonthDropdown
         showIcon={false}
+        onKeyDown={keyDownHandler}
         name={field.name}
         id={field.name}
         wrapperClassName={styles.invoiceFormDateField__inputField}
