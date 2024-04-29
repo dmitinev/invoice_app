@@ -49,6 +49,15 @@ const invoiceSlice = createSlice({
       );
       state.filteredInvoices = state.invoices;
     },
+    markInvoiceAsPaid: (state, action: PayloadAction<string>) => {
+      state.invoices = state.invoices.map((invoice) => {
+        if (invoice.id === action.payload) {
+          return { ...invoice, status: 'paid' };
+        }
+        return invoice;
+      });
+      state.filteredInvoices = state.invoices;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -68,4 +77,5 @@ const invoiceSlice = createSlice({
 });
 
 export default invoiceSlice.reducer;
-export const { toggleCheckbox, deleteInvoice } = invoiceSlice.actions;
+export const { toggleCheckbox, deleteInvoice, markInvoiceAsPaid } =
+  invoiceSlice.actions;

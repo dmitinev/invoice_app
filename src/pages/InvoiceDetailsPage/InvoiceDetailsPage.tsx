@@ -11,8 +11,12 @@ import { InvoiceDeleteBtn } from 'src/components/InvoiceDeleteBtn';
 import { InvoiceEditBtn } from 'src/components/InvoiceEditBtn';
 import { InvoiceItemLine } from 'src/components/InvoiceItemLine';
 import { InvoiceMakePaidBtn } from 'src/components/InvoiceMakePaidBtn';
+import { InvoiceIdIsString } from 'src/helpers/invoiceId.ts';
 import { InvoiceEditPage } from 'src/pages/InvoiceEditPage';
-import { deleteInvoice } from 'src/store/features/Invoice/InvoiceSlice.ts';
+import {
+  deleteInvoice,
+  markInvoiceAsPaid,
+} from 'src/store/features/Invoice/InvoiceSlice.ts';
 import { selectInvoiceById } from 'src/store/features/Invoice/invoiceSelectors';
 import { useAppDispatch, useAppSelector } from 'src/store/redux-hooks';
 import { Page404 } from '../Page404';
@@ -43,6 +47,11 @@ export const InvoiceDetailsPage = () => {
       navigate(`${import.meta.env.BASE_URL}`);
     }
   }, []);
+
+  const markInvoiceAsPaidHandler = () => {
+    InvoiceIdIsString(invoiceId);
+    dispatch(markInvoiceAsPaid(invoiceId));
+  };
 
   if (!invoice) {
     return <Page404 />;
@@ -327,6 +336,7 @@ export const InvoiceDetailsPage = () => {
                     <InvoiceMakePaidBtn
                       text="Mark as Paid"
                       disabled={invoice.status.toLowerCase() === 'paid'}
+                      clickHandler={markInvoiceAsPaidHandler}
                     />
                   </div>
                 </div>

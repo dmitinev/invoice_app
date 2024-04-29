@@ -84,7 +84,9 @@ export const InvoiceForm = ({
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={() => {}}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
       validationSchema={validationSchema}
       enableReinitialize
     >
@@ -295,7 +297,7 @@ export const InvoiceForm = ({
               Cancel
             </button>
             <button
-              type="button"
+              type="submit"
               className={styles.invoiceForm__btnSaveChanges}
             >
               Save Changes
