@@ -4,6 +4,7 @@ import { InvoiceFormItemDelBtn } from 'components/InvoiceFormItemDelBtn';
 import { InvoiceFormSelectField } from 'components/InvoiceFormSelectField';
 import { InvoiceFormTotalField } from 'components/InvoiceFormTotalField';
 import { FieldArray, Form, Formik } from 'formik';
+import { InvoiceIdIsString } from 'src/helpers/invoiceId.ts';
 import { changeInvoice } from 'src/store/features/Invoice/InvoiceSlice.ts';
 import { useAppDispatch } from 'src/store/redux-hooks.ts';
 import {
@@ -22,25 +23,25 @@ interface InvoiceFormProps {
 
 const validationSchema: Yup.ObjectSchema<InvoiceFormValues> =
   Yup.object().shape({
-    senderStreetAddress: Yup.string().required(),
-    senderCity: Yup.string().required(),
-    senderPostCode: Yup.string().required(),
-    senderCountry: Yup.string().required(),
-    clientName: Yup.string().required(),
-    clientEmail: Yup.string().email().required(),
-    clientStreet: Yup.string().required(),
-    clientCity: Yup.string().required(),
-    clientPostCode: Yup.string().required(),
-    clientCountry: Yup.string().required(),
+    senderStreetAddress: Yup.string().required('can’t be empty'),
+    senderCity: Yup.string().required('can’t be empty'),
+    senderPostCode: Yup.string().required('can’t be empty'),
+    senderCountry: Yup.string().required('can’t be empty'),
+    clientName: Yup.string().required('can’t be empty'),
+    clientEmail: Yup.string().email().required('not valid email'),
+    clientStreet: Yup.string().required('can’t be empty'),
+    clientCity: Yup.string().required('can’t be empty'),
+    clientPostCode: Yup.string().required('can’t be empty'),
+    clientCountry: Yup.string().required('can’t be empty'),
     invoiceDate: Yup.date().required(),
     invoicePaymentPeriod: Yup.number().required(),
-    projectDescription: Yup.string().required(),
+    projectDescription: Yup.string().required('can’t be empty'),
     invoiceItems: Yup.array()
       .of(
         object({
-          name: Yup.string().required(),
-          quantity: Yup.number().required(),
-          price: Yup.number().required(),
+          name: Yup.string().required('can’t be empty'),
+          quantity: Yup.number().required('empty'),
+          price: Yup.number().required('can’t be empty'),
           total: Yup.number().required(),
         }),
       )
@@ -82,8 +83,8 @@ export const InvoiceForm = ({
             return { ...item, price: Number(item.price) };
           }),
         };
-
-        dispatch(changeInvoice(preparedValues, invoice?.id as string));
+        InvoiceIdIsString(invoice?.id);
+        dispatch(changeInvoice(preparedValues, invoice.id));
         cancelChangesHandler();
       }}
       validationSchema={validationSchema}

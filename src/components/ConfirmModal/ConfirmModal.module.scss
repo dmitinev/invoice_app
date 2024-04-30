@@ -29,6 +29,9 @@
       top: 0;
       left: 0;
       z-index: 2;
+      @include tablet_display {
+        height: 100%;
+      }
     }
   }
   &__modal {

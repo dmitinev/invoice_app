@@ -22,6 +22,11 @@ export const InvoiceFormInputField = ({
     <label className={styles.invoiceFormInputField} htmlFor={field.name}>
       <span className={styles.invoiceFormInputField__fieldCaption}>
         {labelText}
+        {meta.error && (
+          <span className={styles.invoiceFormInputField__error}>
+            {meta.error}
+          </span>
+        )}
       </span>
       <input
         autoComplete="off"
