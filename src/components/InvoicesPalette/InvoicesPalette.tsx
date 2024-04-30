@@ -23,7 +23,7 @@ export const InvoicesPalette = () => {
   return (
     <motion.section
       initial="hidden"
-      whileInView="visible"
+      animate="visible"
       className={styles.invoicesPalette}
     >
       <Container>

@@ -38,7 +38,9 @@ export const InvoiceFormSelectField = ({
       </span>
       <Select
         className={styles.invoiceFormSelectField__inputField}
-        defaultValue={options.find((opt) => opt.value === field.value)}
+        defaultValue={
+          options.find((opt) => opt.value === field.value) ?? options[0]
+        }
         options={options}
         onChange={changeValue}
         name={field.name}

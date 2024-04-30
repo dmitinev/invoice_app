@@ -112,6 +112,7 @@ const invoiceSlice = createSlice({
         return { payload, meta: { invoiceId } };
       },
     },
+    //   TODO: add action for adding new Invoice
   },
   extraReducers: (builder) => {
     builder

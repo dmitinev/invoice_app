@@ -295,12 +295,13 @@ export const InvoiceForm = ({
               </div>
             )}
           <div className={styles.invoiceForm__buttonsBar}>
+            {/*TODO: "change buttons when there is no invoice to edit, and form is called for new invoice"*/}
             <button
               type="button"
               className={styles.invoiceForm__btnCanceChanges}
               onClick={cancelChangesHandler}
             >
-              Cancel
+              {invoice ? 'Cancel' : 'Discard'}
             </button>
             <button
               type="submit"
