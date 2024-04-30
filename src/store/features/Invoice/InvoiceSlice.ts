@@ -94,8 +94,8 @@ const invoiceSlice = createSlice({
               clientAddress: {
                 country: action.payload.clientCountry,
                 postCode: action.payload.clientPostCode,
-                street: action.payload.senderStreetAddress,
-                city: action.payload.senderCity,
+                street: action.payload.clientStreet,
+                city: action.payload.clientCity,
               },
               items: [...action.payload.invoiceItems],
               total: [...action.payload.invoiceItems].reduce(
