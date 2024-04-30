@@ -4,31 +4,20 @@ import { InvoiceFormItemDelBtn } from 'components/InvoiceFormItemDelBtn';
 import { InvoiceFormSelectField } from 'components/InvoiceFormSelectField';
 import { InvoiceFormTotalField } from 'components/InvoiceFormTotalField';
 import { FieldArray, Form, Formik } from 'formik';
-import { Invoice, Item } from 'src/types';
+import { changeInvoice } from 'src/store/features/Invoice/InvoiceSlice.ts';
+import { useAppDispatch } from 'src/store/redux-hooks.ts';
+import {
+  Invoice,
+  InvoiceFormPayloadAction,
+  InvoiceFormValues,
+} from 'src/types';
 import * as Yup from 'yup';
 import { object } from 'yup';
 import styles from './InvoiceForm.module.scss';
 
 interface InvoiceFormProps {
   invoice?: Invoice;
-  cancelChangesHandler?: () => void;
-}
-
-export interface InvoiceFormValues {
-  senderStreetAddress: string;
-  senderCity: string;
-  senderPostCode: string;
-  senderCountry: string;
-  clientName: string;
-  clientEmail: string;
-  clientStreet: string;
-  clientCity: string;
-  clientPostCode: string;
-  clientCountry: string;
-  invoiceDate: string;
-  invoicePaymentPeriod: number;
-  projectDescription: string;
-  invoiceItems: Item[];
+  cancelChangesHandler: () => void;
 }
 
 const validationSchema: Yup.ObjectSchema<InvoiceFormValues> =
@@ -43,7 +32,7 @@ const validationSchema: Yup.ObjectSchema<InvoiceFormValues> =
     clientCity: Yup.string().required(),
     clientPostCode: Yup.string().required(),
     clientCountry: Yup.string().required(),
-    invoiceDate: Yup.string().required(),
+    invoiceDate: Yup.date().required(),
     invoicePaymentPeriod: Yup.number().required(),
     projectDescription: Yup.string().required(),
     invoiceItems: Yup.array()
@@ -73,19 +62,29 @@ export const InvoiceForm = ({
     clientCity: invoice?.clientAddress.city ?? '',
     clientPostCode: invoice?.clientAddress.postCode ?? '',
     clientCountry: invoice?.clientAddress.country ?? '',
-    invoiceDate: invoice?.createdAt ?? '',
+    invoiceDate: new Date(invoice?.createdAt ?? Date.now()),
     invoicePaymentPeriod: invoice?.paymentTerms ?? 0,
     projectDescription: invoice?.description ?? '',
     invoiceItems: invoice?.items ?? [
       { name: '', quantity: 0, price: 0, total: 0 },
     ],
   };
+  const dispatch = useAppDispatch();
 
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => {
-        console.log(values);
+        const preparedValues: InvoiceFormPayloadAction = {
+          ...values,
+          invoiceDate: values.invoiceDate.toISOString().split('T')[0],
+          invoiceItems: values.invoiceItems.map((item) => {
+            return { ...item, price: Number(item.price) };
+          }),
+        };
+
+        dispatch(changeInvoice(preparedValues, invoice?.id as string));
+        cancelChangesHandler();
       }}
       validationSchema={validationSchema}
       enableReinitialize

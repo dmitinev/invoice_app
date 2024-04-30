@@ -28,3 +28,25 @@ export interface Invoice {
 }
 
 export type Theme = 'light' | 'dark';
+
+export interface InvoiceFormValues {
+  senderStreetAddress: string;
+  senderCity: string;
+  senderPostCode: string;
+  senderCountry: string;
+  clientName: string;
+  clientEmail: string;
+  clientStreet: string;
+  clientCity: string;
+  clientPostCode: string;
+  clientCountry: string;
+  invoiceDate: Date;
+  invoicePaymentPeriod: number;
+  projectDescription: string;
+  invoiceItems: Item[];
+}
+
+export interface InvoiceFormPayloadAction
+  extends Omit<InvoiceFormValues, 'invoiceDate'> {
+  invoiceDate: string;
+}

@@ -1,6 +1,6 @@
-import { InvoiceFormValues } from 'components/InvoiceForm';
 import { useField, useFormikContext } from 'formik';
 import { useEffect } from 'react';
+import { InvoiceFormValues } from 'src/types';
 import styles from './InvoiceFormTotalField.module.scss';
 import IntrinsicElements = React.JSX.IntrinsicElements;
 
@@ -30,7 +30,7 @@ export const InvoiceFormTotalField = ({
     if (invoiceItems[index].quantity || invoiceItems[index].price) {
       setFieldValue(
         name,
-        `${invoiceItems[index].quantity * invoiceItems[index].price}`,
+        Number(`${invoiceItems[index].quantity * invoiceItems[index].price}`),
       );
     }
   }, [invoiceItems[index].quantity, invoiceItems[index].price]);

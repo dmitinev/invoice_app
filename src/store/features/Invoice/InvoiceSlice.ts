@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Invoice } from 'src/types';
+import { Invoice, InvoiceFormPayloadAction } from 'src/types';
 import { fetchInvoices } from './invoiceActions';
 
 type loadingState = 'idle' | 'loading' | 'succeeded' | 'failed';
@@ -58,6 +58,60 @@ const invoiceSlice = createSlice({
       });
       state.filteredInvoices = state.invoices;
     },
+    changeInvoice: {
+      reducer(
+        state,
+        action: PayloadAction<
+          InvoiceFormPayloadAction,
+          string,
+          { invoiceId: string }
+        >,
+      ) {
+        const invoiceCreatedDate = new Date(action.payload.invoiceDate);
+        const paymentDueDate = new Date(
+          invoiceCreatedDate.setDate(
+            invoiceCreatedDate.getDate() + action.payload.invoicePaymentPeriod,
+          ),
+        )
+          .toISOString()
+          .split('T')[0];
+
+        state.invoices = state.invoices.map((invoice) => {
+          if (invoice.id === action.meta.invoiceId) {
+            return {
+              ...invoice,
+              clientName: action.payload.clientName,
+              clientEmail: action.payload.clientEmail,
+              createdAt: action.payload.invoiceDate,
+              paymentTerms: action.payload.invoicePaymentPeriod,
+              paymentDue: paymentDueDate,
+              senderAddress: {
+                street: action.payload.senderStreetAddress,
+                city: action.payload.senderCity,
+                postCode: action.payload.senderPostCode,
+                country: action.payload.senderCountry,
+              },
+              clientAddress: {
+                country: action.payload.clientCountry,
+                postCode: action.payload.clientPostCode,
+                street: action.payload.senderStreetAddress,
+                city: action.payload.senderCity,
+              },
+              items: [...action.payload.invoiceItems],
+              total: [...action.payload.invoiceItems].reduce(
+                (total, item) => total + item.total,
+                0,
+              ),
+            };
+          }
+          return invoice;
+        });
+        state.filteredInvoices = state.invoices;
+      },
+      prepare(payload: InvoiceFormPayloadAction, invoiceId: string) {
+        return { payload, meta: { invoiceId } };
+      },
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -77,5 +131,9 @@ const invoiceSlice = createSlice({
 });
 
 export default invoiceSlice.reducer;
-export const { toggleCheckbox, deleteInvoice, markInvoiceAsPaid } =
-  invoiceSlice.actions;
+export const {
+  toggleCheckbox,
+  deleteInvoice,
+  markInvoiceAsPaid,
+  changeInvoice,
+} = invoiceSlice.actions;

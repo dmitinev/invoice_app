@@ -20,13 +20,13 @@ export const InvoiceItemLine = ({
         <span className={styles.invoiceItemLine__qtyM}>{quantity}</span>
         <span className={styles.invoiceItemLine__markM}> x </span>
         <span className={styles.invoiceItemLine__priceM}>
-          £ {price.toFixed(2)}
+          £ {Number(price).toFixed(2)}
         </span>
       </div>
       <span className={styles.invoiceItemLine__qty}>{quantity}</span>
       <span className={styles.invoiceItemLine__mark}> x </span>
       <span className={styles.invoiceItemLine__price}>
-        £ {price.toFixed(2)}
+        £ {Number(price).toFixed(2)}
       </span>
       <div className={styles.invoiceItemLine__total}>£ {total.toFixed(2)}</div>
     </div>
