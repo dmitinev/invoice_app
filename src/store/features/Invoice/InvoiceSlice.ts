@@ -117,6 +117,10 @@ const invoiceSlice = createSlice({
       state.invoices = [...state.invoices, action.payload];
       state.filteredInvoices = state.invoices;
     },
+    addDraftInvoice: (state, action: PayloadAction<Invoice>) => {
+      state.invoices = [...state.invoices, action.payload];
+      state.filteredInvoices = state.invoices;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -142,4 +146,5 @@ export const {
   markInvoiceAsPaid,
   changeInvoice,
   addNewInvoice,
+  addDraftInvoice,
 } = invoiceSlice.actions;

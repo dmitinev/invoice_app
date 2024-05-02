@@ -12,6 +12,8 @@ export interface Item {
   total: number;
 }
 
+export type InvoiceStatus = 'paid' | 'draft' | 'pending';
+
 export interface Invoice {
   id: string;
   createdAt: string;
@@ -20,7 +22,7 @@ export interface Invoice {
   paymentTerms: number;
   clientName: string;
   clientEmail: string;
-  status: string;
+  status: InvoiceStatus;
   senderAddress: Address;
   clientAddress: Address;
   items: Item[];

@@ -1,8 +1,8 @@
-import { Invoice, InvoiceFormPayloadAction } from 'src/types';
+import { Invoice, InvoiceFormPayloadAction, InvoiceStatus } from 'src/types';
 
 export const transformFormDataToInvoice = (
   data: InvoiceFormPayloadAction,
-  status?: string,
+  status?: InvoiceStatus,
 ): Invoice => {
   const invoiceCreatedDate = new Date(data.invoiceDate);
   const paymentDueDate = new Date(
