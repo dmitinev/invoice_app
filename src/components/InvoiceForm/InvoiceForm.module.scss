@@ -299,6 +299,9 @@
     @include headingSVariant;
     width: 117px;
     height: 48px;
+    @include tablet_display {
+      width: 133px;
+    }
     cursor: pointer;
     border-radius: 24px;
     background-color: #373b53;
@@ -315,6 +318,9 @@
   &__btnNewInvoiceSave {
     @include headingSVariant;
     width: 112px;
+    @include tablet_display {
+      width: 128px
+    }
     height: 48px;
     cursor: pointer;
     border-radius: 24px;
