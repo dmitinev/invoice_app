@@ -4,8 +4,11 @@ import { InvoiceFormItemDelBtn } from 'components/InvoiceFormItemDelBtn';
 import { InvoiceFormSelectField } from 'components/InvoiceFormSelectField';
 import { InvoiceFormTotalField } from 'components/InvoiceFormTotalField';
 import { FieldArray, Form, Formik } from 'formik';
-import { InvoiceIdIsString } from 'src/helpers/invoiceId.ts';
-import { changeInvoice } from 'src/store/features/Invoice/InvoiceSlice.ts';
+import { transformFormDataToInvoice } from 'src/helpers/transformFormDataToInvoice.ts';
+import {
+  addNewInvoice,
+  changeInvoice,
+} from 'src/store/features/Invoice/InvoiceSlice.ts';
 import { useAppDispatch } from 'src/store/redux-hooks.ts';
 import {
   Invoice,
@@ -83,8 +86,12 @@ export const InvoiceForm = ({
             return { ...item, price: Number(item.price) };
           }),
         };
-        InvoiceIdIsString(invoice?.id);
-        dispatch(changeInvoice(preparedValues, invoice.id));
+        if (invoice) {
+          dispatch(changeInvoice(preparedValues, invoice.id));
+        }
+        if (!invoice) {
+          dispatch(addNewInvoice(transformFormDataToInvoice(preparedValues)));
+        }
         cancelChangesHandler();
       }}
       validationSchema={validationSchema}
@@ -295,20 +302,48 @@ export const InvoiceForm = ({
               </div>
             )}
           <div className={styles.invoiceForm__buttonsBar}>
-            {/*TODO: "change buttons when there is no invoice to edit, and form is called for new invoice"*/}
-            <button
-              type="button"
-              className={styles.invoiceForm__btnCanceChanges}
-              onClick={cancelChangesHandler}
-            >
-              {invoice ? 'Cancel' : 'Discard'}
-            </button>
-            <button
-              type="submit"
-              className={styles.invoiceForm__btnSaveChanges}
-            >
-              Save Changes
-            </button>
+            {invoice && (
+              <button
+                type="button"
+                className={styles.invoiceForm__btnCanceChanges}
+                onClick={cancelChangesHandler}
+              >
+                Cancel
+              </button>
+            )}
+            {invoice && (
+              <button
+                type="submit"
+                className={styles.invoiceForm__btnSaveChanges}
+              >
+                Save Changes
+              </button>
+            )}
+            {!invoice && (
+              <button
+                type="button"
+                className={styles.invoiceForm__btnCancelNewInvoice}
+                onClick={cancelChangesHandler}
+              >
+                Cancel
+              </button>
+            )}
+            {!invoice && (
+              <button
+                type="button"
+                className={styles.invoiceForm__btnSaveDraft}
+              >
+                Save as Draft
+              </button>
+            )}
+            {!invoice && (
+              <button
+                type="submit"
+                className={styles.invoiceForm__btnNewInvoiceSave}
+              >
+                Save & Send
+              </button>
+            )}
           </div>
         </Form>
       )}

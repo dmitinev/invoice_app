@@ -81,6 +81,7 @@ const invoiceSlice = createSlice({
             return {
               ...invoice,
               clientName: action.payload.clientName,
+              description: action.payload.projectDescription,
               clientEmail: action.payload.clientEmail,
               createdAt: action.payload.invoiceDate,
               paymentTerms: action.payload.invoicePaymentPeriod,
@@ -112,7 +113,10 @@ const invoiceSlice = createSlice({
         return { payload, meta: { invoiceId } };
       },
     },
-    //   TODO: add action for adding new Invoice
+    addNewInvoice: (state, action: PayloadAction<Invoice>) => {
+      state.invoices = [...state.invoices, action.payload];
+      state.filteredInvoices = state.invoices;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -137,4 +141,5 @@ export const {
   deleteInvoice,
   markInvoiceAsPaid,
   changeInvoice,
+  addNewInvoice,
 } = invoiceSlice.actions;
