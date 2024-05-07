@@ -335,7 +335,10 @@ export const InvoiceDetailsPage = () => {
                   <div className={styles.invoiceDetailsPage__footer__button}>
                     <InvoiceMakePaidBtn
                       text="Mark as Paid"
-                      disabled={invoice.status.toLowerCase() === 'paid'}
+                      disabled={
+                        invoice.status.toLowerCase() === 'paid' ||
+                        invoice.status.toLowerCase() === 'draft'
+                      }
                       clickHandler={markInvoiceAsPaidHandler}
                     />
                   </div>

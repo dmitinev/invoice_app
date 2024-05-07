@@ -1,4 +1,5 @@
 import { useField } from 'formik';
+import { useEffect } from 'react';
 import Select, { SingleValue } from 'react-select';
 import styles from './InvoiceFormSelectField.module.scss';
 import IntrinsicElements = React.JSX.IntrinsicElements;
@@ -24,6 +25,10 @@ export const InvoiceFormSelectField = ({
     { value: 14, label: 'Next 14 Days' },
     { value: 30, label: 'Next 30 Days' },
   ];
+
+  useEffect(() => {
+    helpers.setValue(options[0].value);
+  }, []);
 
   const changeValue = (newValue: SingleValue<Option>) => {
     if (newValue) {

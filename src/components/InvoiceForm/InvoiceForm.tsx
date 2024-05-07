@@ -332,6 +332,24 @@ export const InvoiceForm = ({
               <button
                 type="button"
                 className={styles.invoiceForm__btnSaveDraft}
+                onClick={() => {
+                  const preparedValues: InvoiceFormPayloadAction = {
+                    ...values,
+                    invoiceDate: values.invoiceDate.toISOString().split('T')[0],
+                    invoiceItems:
+                      values.invoiceItems.length > 0
+                        ? values.invoiceItems.map((item) => {
+                            return { ...item, price: Number(item.price) };
+                          })
+                        : [],
+                  };
+                  dispatch(
+                    addNewInvoice(
+                      transformFormDataToInvoice(preparedValues, 'draft'),
+                    ),
+                  );
+                  cancelChangesHandler();
+                }}
               >
                 Save as Draft
               </button>

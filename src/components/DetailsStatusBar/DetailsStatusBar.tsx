@@ -47,7 +47,10 @@ export const DetailsStatusBar = ({
         <div className={styles.detailsStatusBar__button}>
           <InvoiceMakePaidBtn
             text="Mark as Paid"
-            disabled={status.toLowerCase() === 'paid'}
+            disabled={
+              status.toLowerCase() === 'paid' ||
+              status.toLowerCase() === 'draft'
+            }
           />
         </div>
       </div>
